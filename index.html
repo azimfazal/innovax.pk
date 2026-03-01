@@ -34,118 +34,44 @@
     <iframe id="contentFrame" title="Content"></iframe>
 
     <script>
-        let usingFallback = false;
-        let loadAttempts = 0;
-        const maxAttempts = 2;
+        const frame = document.getElementById('contentFrame');
         
         function checkServerAndLoad() {
-            const frame = document.getElementById('contentFrame');
+            // Try to load a tiny image from the server to test if it's accessible
+            const testImg = new Image();
             
-            // Try to load the IP address first
-            frame.src = 'http://182.191.88.78';
+            testImg.onload = function() {
+                // Server is accessible, load it in iframe
+                console.log('Server is up');
+                frame.src = 'http://182.191.88.78';
+            };
             
-            // Set a timeout to check if the load was successful
-            setTimeout(checkLoadStatus, 5000); // Check after 5 seconds
+            testImg.onerror = function() {
+                // Server is down, load fallback
+                console.log('Server is down');
+                frame.src = 'firstpage.html';
+            };
+            
+            // Add a random query param to prevent caching
+            testImg.src = 'http://182.191.88.78/favicon.ico?' + Date.now();
         }
         
-        function checkLoadStatus() {
-            const frame = document.getElementById('contentFrame');
-            
-            // Try to access the content document - this will throw an error if cross-origin
-            // But we can also check if the URL is still the same and if there was an error
-            try {
-                // If we can access the document and it's not our fallback
-                if (frame.contentDocument || frame.contentWindow) {
-                    // Check if the frame actually loaded something
-                    const frameUrl = frame.contentWindow.location.href;
-                    
-                    // If it's still about:blank or errored, it didn't load properly
-                    if (frameUrl === 'about:blank' || frameUrl.includes('error')) {
-                        throw new Error('Failed to load');
-                    }
-                    
-                    console.log('Successfully loaded server content');
-                    usingFallback = false;
-                    loadAttempts = 0;
-                }
-            } catch (e) {
-                // Cross-origin error means the iframe loaded content from a different domain
-                // This is actually GOOD - it means the server responded
-                if (e.name === 'SecurityError') {
-                    console.log('Server content loaded (cross-origin)');
-                    usingFallback = false;
-                    loadAttempts = 0;
-                } else {
-                    // Other error - loading failed
-                    handleLoadFailure();
-                }
-            }
-        }
-        
-        function handleLoadFailure() {
-            const frame = document.getElementById('contentFrame');
-            
-            loadAttempts++;
-            console.log(`Load attempt ${loadAttempts} failed`);
-            
-            if (!usingFallback) {
-                if (loadAttempts >= maxAttempts) {
-                    console.log('Server unavailable, switching to fallback page');
-                    usingFallback = true;
-                    frame.src = 'firstpage.html';
-                } else {
-                    // Try again
-                    console.log('Retrying server connection...');
-                    setTimeout(() => {
-                        frame.src = 'http://182.191.88.78';
-                    }, 2000);
-                }
-            }
-        }
-        
-        function handleIframeError() {
-            console.log('Iframe error event triggered');
-            handleLoadFailure();
-        }
-        
-        function handleIframeLoad() {
-            const frame = document.getElementById('contentFrame');
-            console.log('Iframe load event triggered');
-            
-            // Check if we successfully loaded the IP address
-            if (frame.src.includes('182.191.88.78')) {
-                // Give it a moment to see if content actually loaded
-                setTimeout(checkLoadStatus, 1000);
-            } else if (frame.src.includes('firstpage.html')) {
-                console.log('Fallback page loaded');
-                usingFallback = true;
-            }
-        }
-        
-        // Set up event listeners
-        const frame = document.getElementById('contentFrame');
-        frame.onerror = handleIframeError;
-        frame.onload = handleIframeLoad;
-        
-        // Initial load
+        // Initial check
         checkServerAndLoad();
         
-        // Periodically check if we're on fallback and server might be back
-        setInterval(() => {
-            if (usingFallback) {
-                console.log('Checking if server is back online...');
-                loadAttempts = 0; // Reset attempts
-                usingFallback = false; // Temporarily set to false to allow retry
-                frame.src = 'http://182.191.88.78';
-                
-                // Set a timeout to check if this new load succeeded
-                setTimeout(() => {
-                    if (!usingFallback) {
-                        // Still not using fallback means we might have loaded successfully
-                        checkLoadStatus();
-                    }
-                }, 5000);
-            }
+        // Periodically check if server comes back
+        setInterval(function() {
+            const testImg = new Image();
+            
+            testImg.onload = function() {
+                // Server is back, switch to it if we're on fallback
+                if (frame.src.includes('firstpage.html')) {
+                    console.log('Server is back, switching');
+                    frame.src = 'http://182.191.88.78';
+                }
+            };
+            
+            testImg.src = 'http://182.191.88.78/favicon.ico?' + Date.now();
         }, 30000); // Check every 30 seconds
     </script>
 </body>
