@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time-Based Content</title>
+    <title>Content Display</title>
     <style>
         * {
             margin: 0;
@@ -31,46 +31,60 @@
     </style>
 </head>
 <body>
-    <iframe id="contentFrame" title="Time-based content"></iframe>
+    <iframe id="contentFrame" title="Content"></iframe>
 
     <script>
-        function updateContent() {
-            // Get current time in Pakistan (PKT - UTC+5)
-            const now = new Date();
-            
-            // Convert to Pakistan time (UTC+5)
-            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-            const pakistanTime = new Date(utc + (3600000 * 5));
-            
-            const hours = pakistanTime.getHours();
-            
-            // Check if current time is between 8 AM (8) and 4 PM (16)
-         //   const isDaytime = hours >= 8 && hours < 8;
-            const isDaytime =0;
-            
+        let usingFallback = false;
+        
+        function checkServerAndLoad() {
             const frame = document.getElementById('contentFrame');
             
-            if (isDaytime) {
-                // Between 8 AM and 4 PM - show the IP address
-                frame.src = 'http://182.191.88.78';
-            } else {
-                // Outside 8 AM-4 PM - show firstpage.html
+            // Try to load the IP address first
+            frame.src = 'http://182.191.88.78';
+        }
+        
+        function handleIframeError() {
+            const frame = document.getElementById('contentFrame');
+            
+            // If we're not already using the fallback and there's an error
+            if (!usingFallback) {
+                console.log('Server unavailable, switching to fallback page');
+                usingFallback = true;
                 frame.src = 'firstpage.html';
             }
         }
         
-        // Update immediately
-        updateContent();
+        function handleIframeLoad() {
+            const frame = document.getElementById('contentFrame');
+            
+            // Check if we successfully loaded the IP address
+            if (frame.src.includes('182.191.88.78')) {
+                console.log('Successfully loaded server content');
+                usingFallback = false;
+            }
+        }
         
-        // Update every minute (to catch the hour change)
-        setInterval(updateContent, 60000);
+        // Set up event listeners
+        const frame = document.getElementById('contentFrame');
+        frame.onerror = handleIframeError;
+        frame.onload = handleIframeLoad;
         
-        // Handle iframe errors
-        document.getElementById('contentFrame').onerror = function() {
-            console.log('Error loading content');
-        };
+        // Initial load
+        checkServerAndLoad();
+        
+        // Periodically check if we're on fallback and server might be back
+        setInterval(() => {
+            if (usingFallback) {
+                console.log('Checking if server is back online...');
+                const currentSrc = frame.src;
+                
+                // Try to load the IP address again
+                frame.src = 'http://182.191.88.78';
+                
+                // If it fails again, handleIframeError will switch back to firstpage.html
+                // If it succeeds, handleIframeLoad will update usingFallback flag
+            }
+        }, 30000); // Check every 30 seconds
     </script>
 </body>
 </html>
-
-
