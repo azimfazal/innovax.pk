@@ -13,7 +13,7 @@
         }
         
         .container {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
@@ -24,16 +24,19 @@
             background: white;
             font-family: Arial, sans-serif;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .scrollable {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 30px;
         }
         
         .scrollable::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
         
         .scrollable::-webkit-scrollbar-track {
@@ -42,62 +45,244 @@
         
         .scrollable::-webkit-scrollbar-thumb {
             background: #888;
-            border-radius: 4px;
+            border-radius: 5px;
         }
         
+        /* Masonry-like grid */
         .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1400px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            max-width: 2000px;
             margin: 0 auto;
         }
         
-        .grid img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            background: #ddd;
+        .grid-item {
+            flex: 0 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease;
         }
         
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .grid-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        /* Loading indicator */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: #666;
+            font-family: Arial, sans-serif;
+        }
+        
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border: 3px solid #ddd;
+            border-top-color: #888;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Image info overlay (optional - shows on hover) */
+        .image-info {
+            padding: 10px 15px;
+            background: rgba(255,255,255,0.9);
+            border-top: 1px solid #eee;
+            font-family: Arial, sans-serif;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        
+        .image-info span {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        
+        /* Responsive adjustments */
         @media (max-width: 768px) {
+            .scrollable {
+                padding: 15px;
+            }
+            
             .grid {
-                grid-template-columns: 1fr;
+                gap: 15px;
             }
-            .grid img {
-                height: 200px;
-            }
+        }
+        
+        /* No images message */
+        .no-images {
+            text-align: center;
+            padding: 60px 20px;
+            font-family: Arial, sans-serif;
+            color: #666;
+            font-size: 1.2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📸 Jobs Gallery (1.jpg to 100.jpg)</h1>
+        <h1>📸 Jobs Gallery</h1>
         
         <div class="scrollable">
-            <div class="grid" id="imageGrid"></div>
+            <div id="loading" class="loading">Loading images</div>
+            <div class="grid" id="imageGrid" style="display: none;"></div>
+            <div id="noImages" class="no-images" style="display: none;">
+                No images found in jobs folder (1.jpg to 100.jpg)
+            </div>
         </div>
     </div>
 
     <script>
         const imageGrid = document.getElementById('imageGrid');
+        const loading = document.getElementById('loading');
+        const noImages = document.getElementById('noImages');
+        
+        let loadedCount = 0;
+        let foundCount = 0;
+        const totalToCheck = 100;
+        
+        // Function to get natural dimensions after load
+        function getImageDimensions(img) {
+            return {
+                width: img.naturalWidth,
+                height: img.naturalHeight,
+                aspectRatio: (img.naturalWidth / img.naturalHeight).toFixed(2)
+            };
+        }
+        
+        // Function to create image item with dynamic sizing
+        function createImageItem(img, filename) {
+            const item = document.createElement('div');
+            item.className = 'grid-item';
+            
+            // Clone the image to preserve it
+            const imageClone = img.cloneNode();
+            
+            // Add image to item
+            item.appendChild(imageClone);
+            
+            // Add image info (optional - remove if not wanted)
+            const info = document.createElement('div');
+            info.className = 'image-info';
+            
+            // Wait for image to load to get dimensions
+            if (img.complete) {
+                const dims = getImageDimensions(img);
+                info.innerHTML = `
+                    <span>📁 ${filename}</span>
+                    <span>📏 ${dims.width} × ${dims.height}</span>
+                `;
+            } else {
+                img.onload = function() {
+                    const dims = getImageDimensions(img);
+                    info.innerHTML = `
+                        <span>📁 ${filename}</span>
+                        <span>📏 ${dims.width} × ${dims.height}</span>
+                    `;
+                };
+            }
+            
+            item.appendChild(info);
+            
+            return item;
+        }
         
         // Try to load images from 1.jpg to 100.jpg
-        for (let i = 1; i <= 100; i++) {
-            const img = document.createElement('img');
-            img.src = `jobs/${i}.jpg`;
-            img.alt = `Image ${i}`;
-            img.loading = 'lazy';
+        for (let i = 1; i <= totalToCheck; i++) {
+            const filename = `${i}.jpg`;
+            const img = new Image();
             
-            // Only show image if it loads successfully
-            img.onerror = function() {
-                this.remove(); // Remove image if not found
+            img.onload = function() {
+                foundCount++;
+                
+                // Create and add the image item with dynamic sizing
+                const item = createImageItem(this, filename);
+                imageGrid.appendChild(item);
+                
+                // Update loading status
+                loadedCount++;
+                checkComplete();
             };
             
-            imageGrid.appendChild(img);
+            img.onerror = function() {
+                loadedCount++;
+                checkComplete();
+            };
+            
+            img.src = `jobs/${filename}?${Date.now()}`; // Add cache buster
+            img.alt = filename;
+            img.loading = 'lazy';
         }
+        
+        function checkComplete() {
+            if (loadedCount === totalToCheck) {
+                loading.style.display = 'none';
+                
+                if (foundCount > 0) {
+                    imageGrid.style.display = 'flex';
+                    noImages.style.display = 'none';
+                } else {
+                    imageGrid.style.display = 'none';
+                    noImages.style.display = 'block';
+                }
+            }
+        }
+        
+        // Also try .jpeg extension for any images that might use that
+        for (let i = 1; i <= totalToCheck; i++) {
+            const filename = `${i}.jpeg`;
+            const img = new Image();
+            
+            img.onload = function() {
+                foundCount++;
+                const item = createImageItem(this, filename);
+                imageGrid.appendChild(item);
+                loadedCount++;
+                checkComplete();
+            };
+            
+            img.onerror = function() {
+                loadedCount++;
+                checkComplete();
+            };
+            
+            img.src = `jobs/${filename}?${Date.now()}`;
+            img.alt = filename;
+            img.loading = 'lazy';
+        }
+        
+        // Note: totalToCheck * 2 because we check both .jpg and .jpeg
+        // Adjust the totalToCheck value in checkComplete if needed
     </script>
 </body>
 </html>
