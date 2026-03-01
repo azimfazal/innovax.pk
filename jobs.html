@@ -48,7 +48,6 @@
             border-radius: 5px;
         }
         
-        /* Masonry-like grid */
         .grid {
             display: flex;
             flex-wrap: wrap;
@@ -85,7 +84,6 @@
             object-fit: contain;
         }
         
-        /* Loading indicator */
         .loading {
             text-align: center;
             padding: 40px;
@@ -110,7 +108,6 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Image info overlay (optional - shows on hover) */
         .image-info {
             padding: 10px 15px;
             background: rgba(255,255,255,0.9);
@@ -125,7 +122,6 @@
             margin-right: 15px;
         }
         
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .scrollable {
                 padding: 15px;
@@ -136,7 +132,6 @@
             }
         }
         
-        /* No images message */
         .no-images {
             text-align: center;
             padding: 60px 20px;
@@ -154,10 +149,10 @@
         <h1>📸 Jobs Gallery</h1>
         
         <div class="scrollable">
-            <div id="loading" class="loading">Loading images</div>
-            <div class="grid" id="imageGrid" style="display: none;"></div>
+            <div id="loading" class="loading">Loading images...</div>
+            <div class="grid" id="imageGrid"></div>
             <div id="noImages" class="no-images" style="display: none;">
-                No images found in jobs folder (1.jpg to 100.jpg)
+                No images found in jobs folder
             </div>
         </div>
     </div>
@@ -168,121 +163,52 @@
         const noImages = document.getElementById('noImages');
         
         let loadedCount = 0;
-        let foundCount = 0;
-        const totalToCheck = 100;
-        
-        // Function to get natural dimensions after load
-        function getImageDimensions(img) {
-            return {
-                width: img.naturalWidth,
-                height: img.naturalHeight,
-                aspectRatio: (img.naturalWidth / img.naturalHeight).toFixed(2)
-            };
-        }
-        
-        // Function to create image item with dynamic sizing
-        function createImageItem(img, filename) {
-            const item = document.createElement('div');
-            item.className = 'grid-item';
-            
-            // Clone the image to preserve it
-            const imageClone = img.cloneNode();
-            
-            // Add image to item
-            item.appendChild(imageClone);
-            
-            // Add image info (optional - remove if not wanted)
-            const info = document.createElement('div');
-            info.className = 'image-info';
-            
-            // Wait for image to load to get dimensions
-            if (img.complete) {
-                const dims = getImageDimensions(img);
-                info.innerHTML = `
-                    <span>📁 ${filename}</span>
-                    <span>📏 ${dims.width} × ${dims.height}</span>
-                `;
-            } else {
-                img.onload = function() {
-                    const dims = getImageDimensions(img);
-                    info.innerHTML = `
-                        <span>📁 ${filename}</span>
-                        <span>📏 ${dims.width} × ${dims.height}</span>
-                    `;
-                };
-            }
-            
-            item.appendChild(info);
-            
-            return item;
-        }
+        let foundImages = false;
         
         // Try to load images from 1.jpg to 100.jpg
-        for (let i = 1; i <= totalToCheck; i++) {
+        for (let i = 1; i <= 100; i++) {
             const filename = `${i}.jpg`;
             const img = new Image();
             
             img.onload = function() {
-                foundCount++;
+                foundImages = true;
                 
-                // Create and add the image item with dynamic sizing
-                const item = createImageItem(this, filename);
+                // Create grid item
+                const item = document.createElement('div');
+                item.className = 'grid-item';
+                
+                // Add image
+                const imageClone = document.createElement('img');
+                imageClone.src = this.src;
+                imageClone.alt = filename;
+                imageClone.loading = 'lazy';
+                item.appendChild(imageClone);
+                
+                // Add info
+                const info = document.createElement('div');
+                info.className = 'image-info';
+                info.innerHTML = `
+                    <span>📁 ${filename}</span>
+                    <span>📏 ${this.naturalWidth} × ${this.naturalHeight}</span>
+                `;
+                item.appendChild(info);
+                
                 imageGrid.appendChild(item);
                 
-                // Update loading status
-                loadedCount++;
-                checkComplete();
-            };
-            
-            img.onerror = function() {
-                loadedCount++;
-                checkComplete();
-            };
-            
-            img.src = `jobs/${filename}?${Date.now()}`; // Add cache buster
-            img.alt = filename;
-            img.loading = 'lazy';
-        }
-        
-        function checkComplete() {
-            if (loadedCount === totalToCheck) {
+                // Hide loading
                 loading.style.display = 'none';
-                
-                if (foundCount > 0) {
-                    imageGrid.style.display = 'flex';
-                    noImages.style.display = 'none';
-                } else {
-                    imageGrid.style.display = 'none';
-                    noImages.style.display = 'block';
-                }
+            };
+            
+            img.src = `jobs/${filename}`;
+        }
+        
+        // If no images found after a delay, show no images message
+        setTimeout(() => {
+            if (!foundImages) {
+                loading.style.display = 'none';
+                noImages.style.display = 'block';
             }
-        }
-        
-        // Also try .jpeg extension for any images that might use that
-        for (let i = 1; i <= totalToCheck; i++) {
-            const filename = `${i}.jpeg`;
-            const img = new Image();
-            
-            img.onload = function() {
-                foundCount++;
-                const item = createImageItem(this, filename);
-                imageGrid.appendChild(item);
-                loadedCount++;
-                checkComplete();
-            };
-            
-            img.onerror = function() {
-                loadedCount++;
-                checkComplete();
-            };
-            
-            img.src = `jobs/${filename}?${Date.now()}`;
-            img.alt = filename;
-            img.loading = 'lazy';
-        }
-        
-        // Note: totalToCheck * 2 because we check both .jpg and .jpeg
-        // Adjust the totalToCheck value in checkComplete if needed
+        }, 3000);
     </script>
 </body>
 </html>
