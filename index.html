@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time-Based Content Frame</title>
+    <title>Time-Based Content</title>
     <style>
         * {
             margin: 0;
@@ -11,163 +11,27 @@
             box-sizing: border-box;
         }
         
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .header h1 {
-            color: #333;
-            font-size: 24px;
-        }
-        
-        .header p {
-            color: #666;
-            margin-top: 5px;
-            font-size: 14px;
-        }
-        
-        .time-badge {
-            display: inline-block;
-            background: #4CAF50;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-        
-        .container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .frame-container {
+        body, html {
             width: 100%;
-            max-width: 1200px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            height: 100%;
             overflow: hidden;
         }
         
-        .frame-header {
-            background: #f5f5f5;
-            padding: 10px 15px;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-        }
-        
-        .window-controls {
-            display: flex;
-            gap: 8px;
-            margin-right: 15px;
-        }
-        
-        .window-controls span {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        
-        .window-controls span:nth-child(1) { background: #ff5f56; }
-        .window-controls span:nth-child(2) { background: #ffbd2e; }
-        .window-controls span:nth-child(3) { background: #27c93f; }
-        
-        .url-bar {
-            background: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            color: #333;
-            font-size: 14px;
-            flex: 1;
-            border: 1px solid #ddd;
-        }
-        
-        .url-bar span {
-            color: #4CAF50;
-            font-weight: bold;
-        }
-        
         iframe {
-            width: 100%;
-            height: 600px;
+            width: 100vw;
+            height: 100vh;
             border: none;
             display: block;
-        }
-        
-        .footer {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px;
-            text-align: center;
-            color: #666;
-            font-size: 12px;
-            border-top: 1px solid #ddd;
-        }
-        
-        .status-message {
-            margin-top: 10px;
-            font-size: 14px;
-        }
-        
-        @media (max-width: 768px) {
-            iframe {
-                height: 400px;
-            }
-            
-            .header h1 {
-                font-size: 20px;
-            }
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🕒 Time-Based Content Display</h1>
-        <p>Showing different content based on Pakistan Time (PKT)</p>
-        <div class="time-badge" id="currentTime"></div>
-    </div>
-    
-    <div class="container">
-        <div class="frame-container">
-            <div class="frame-header">
-                <div class="window-controls">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="url-bar" id="urlDisplay">
-                    <span id="urlText">Loading...</span>
-                </div>
-            </div>
-            
-            <iframe id="contentFrame" title="Time-based content"></iframe>
-            
-            <div class="status-message" id="statusMessage" style="text-align: center; padding: 10px; background: #f9f9f9; border-top: 1px solid #eee;">
-                ⏰ Based on Pakistan Standard Time (PKT, UTC+5)
-            </div>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <p>🕒 8:00 AM - 4:00 PM: Shows http://182.191.88.78 | Other times: Shows firstpage.html</p>
-        <p id="currentTimeLong" style="margin-top: 5px; color: #999;"></p>
-    </div>
+    <iframe id="contentFrame" title="Time-based content"></iframe>
 
     <script>
         function updateContent() {
@@ -179,68 +43,30 @@
             const pakistanTime = new Date(utc + (3600000 * 5));
             
             const hours = pakistanTime.getHours();
-            const minutes = pakistanTime.getMinutes();
-            const seconds = pakistanTime.getSeconds();
-            
-            // Format time display
-            const timeString = pakistanTime.toLocaleString('en-US', {
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true,
-                timeZone: 'Asia/Karachi'
-            });
-            
-            const fullDateString = pakistanTime.toLocaleString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                timeZone: 'Asia/Karachi'
-            });
-            
-            document.getElementById('currentTime').textContent = `Pakistan Time: ${timeString}`;
-            document.getElementById('currentTimeLong').textContent = fullDateString;
             
             // Check if current time is between 8 AM (8) and 4 PM (16)
             const isDaytime = hours >= 8 && hours < 16;
             
             const frame = document.getElementById('contentFrame');
-            const urlText = document.getElementById('urlText');
-            const statusMessage = document.getElementById('statusMessage');
             
             if (isDaytime) {
                 // Between 8 AM and 4 PM - show the IP address
                 frame.src = 'http://182.191.88.78';
-                urlText.innerHTML = '🌐 <strong>http://182.191.88.78</strong>';
-                statusMessage.innerHTML = '✅ Currently showing: <strong>http://182.191.88.78</strong> (8:00 AM - 4:00 PM PKT)';
-                statusMessage.style.background = '#e8f5e9';
-                statusMessage.style.color = '#2e7d32';
             } else {
                 // Outside 8 AM-4 PM - show firstpage.html
                 frame.src = 'firstpage.html';
-                urlText.innerHTML = '📄 <strong>firstpage.html</strong>';
-                statusMessage.innerHTML = '🌙 Currently showing: <strong>firstpage.html</strong> (After 4:00 PM - Before 8:00 AM PKT)';
-                statusMessage.style.background = '#fff3e0';
-                statusMessage.style.color = '#bf360c';
             }
         }
         
         // Update immediately
         updateContent();
         
-        // Update every second
-        setInterval(updateContent, 1000);
+        // Update every minute (to catch the hour change)
+        setInterval(updateContent, 60000);
         
-        // Handle iframe errors (in case the IP doesn't respond)
+        // Handle iframe errors
         document.getElementById('contentFrame').onerror = function() {
-            const statusMessage = document.getElementById('statusMessage');
-            statusMessage.innerHTML = '⚠️ Error loading content. Please check if the server is accessible.';
-            statusMessage.style.background = '#ffebee';
-            statusMessage.style.color = '#c62828';
+            console.log('Error loading content');
         };
     </script>
 </body>
