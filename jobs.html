@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Job Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs Images</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f0f0f0;
             min-height: 100vh;
             padding: 20px;
         }
@@ -21,348 +20,104 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            backdrop-filter: blur(10px);
         }
 
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px 20px;
+        h1 {
             text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-family: Arial, sans-serif;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .image-count {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 20px;
-            border-radius: 50px;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            backdrop-filter: blur(5px);
-        }
-
-        /* Search and Filter */
-        .search-section {
-            padding: 20px;
-            background: white;
-            border-bottom: 1px solid #eee;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 15px 20px;
-            font-size: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 50px;
-            outline: none;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
-        }
-
-        .search-box:focus {
-            border-color: #667eea;
-            background: white;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-        }
-
-        /* Images Container - SCROLLABLE AREA */
+        /* Scrollable images container */
         .images-container {
-            height: 600px;
+            height: calc(100vh - 100px);
             overflow-y: auto;
             padding: 20px;
-            background: #f8f9fa;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
-        /* Custom Scrollbar */
+        /* Scrollbar styling */
         .images-container::-webkit-scrollbar {
             width: 8px;
         }
 
         .images-container::-webkit-scrollbar-track {
             background: #f1f1f1;
-            border-radius: 10px;
         }
 
         .images-container::-webkit-scrollbar-thumb {
-            background: #667eea;
-            border-radius: 10px;
+            background: #888;
+            border-radius: 4px;
         }
 
         .images-container::-webkit-scrollbar-thumb:hover {
-            background: #5a67d8;
+            background: #555;
         }
 
-        /* Image Cards Grid */
+        /* Image grid */
         .images-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            padding: 5px;
+            gap: 20px;
         }
 
-        /* Image Card */
+        /* Image card - just displays image */
         .image-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            animation: fadeIn 0.5s ease-out;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .image-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
-        }
-
-        /* Image Container */
-        .image-container {
+        .image-card img {
             width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background: #f5f5f5;
-            position: relative;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: 100%;
+            height: 250px;
             object-fit: cover;
-            transition: transform 0.5s ease;
             display: block;
         }
 
-        .image-card:hover .image-container img {
-            transform: scale(1.1);
-        }
-
-        /* Image Info */
-        .image-info {
-            padding: 15px;
-        }
-
-        .image-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .image-meta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 10px;
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .image-meta span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .image-description {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
-
-        .image-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .tag {
-            background: #f0f0f0;
-            color: #555;
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        /* Image Badge */
-        .image-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(102, 126, 234, 0.9);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            z-index: 2;
-            backdrop-filter: blur(5px);
-        }
-
-        /* No Images Found */
-        .no-images {
-            text-align: center;
-            padding: 50px 20px;
-            color: #666;
-        }
-
-        .no-images svg {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-
-        .no-images h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        /* Loading State */
-        .loading {
-            text-align: center;
-            padding: 50px;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Mobile Responsive */
+        /* Mobile */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
             }
-
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .header p {
-                font-size: 0.95rem;
-            }
-
+            
             .images-container {
-                height: calc(100vh - 250px);
-                padding: 15px;
+                height: calc(100vh - 80px);
+                padding: 10px;
             }
-
+            
             .images-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
             }
-
-            .image-container {
-                height: 180px;
-            }
-
-            .image-title {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Small Mobile */
-        @media (max-width: 480px) {
-            .header {
-                padding: 20px 15px;
-            }
-
-            .header h1 {
-                font-size: 1.5rem;
-            }
-
-            .search-box {
-                padding: 12px 15px;
-            }
-
-            .image-container {
-                height: 160px;
-            }
-        }
-
-        /* Touch-friendly scrolling for mobile */
-        @media (hover: none) and (pointer: coarse) {
-            .images-container {
-                -webkit-overflow-scrolling: touch;
-                scroll-behavior: smooth;
+            
+            .image-card img {
+                height: 200px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🖼️ Job Gallery</h1>
-            <p>Browse job-related images automatically</p>
-            <div class="image-count" id="imageCount">Loading images...</div>
-        </div>
-
-        <div class="search-section">
-            <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search images by title, tags, or description...">
-        </div>
-
-        <!-- SCROLLABLE IMAGES CONTAINER -->
-        <div class="images-container" id="imagesContainer">
-            <div class="loading" id="loading">
-                <div class="loading-spinner"></div>
-                <p>Loading available images...</p>
-            </div>
-            
-            <div class="images-grid" id="imagesGrid" style="display: none;"></div>
-            
-            <div class="no-images" id="noImages" style="display: none;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor"/>
-                    <circle cx="8.5" cy="8.5" r="2.5" stroke="currentColor"/>
-                    <path d="M21 15L16 10L5 21" stroke="currentColor" stroke-linecap="round"/>
-                </svg>
-                <h3>No images found</h3>
-                <p>Try adjusting your search or add images to the jobs folder</p>
+        <h1>📸 Jobs Gallery</h1>
+        
+        <!-- Scrollable images container -->
+        <div class="images-container">
+            <div class="images-grid" id="imagesGrid">
+                <!-- Images will be loaded here -->
             </div>
         </div>
     </div>
 
     <script>
-        // Sample image data - In real scenario, this would scan your jobs folder for .jpg/.jpeg files
+        // List of image files from jobs folder
         const imageFiles = [
             'software-engineer.jpg',
             'frontend-developer.jpg',
-            'backend-developer.jpg', 
+            'backend-developer.jpg',
             'devops-engineer.jpg',
             'data-scientist.jpg',
             'product-manager.jpg',
@@ -386,216 +141,23 @@
             'business-analyst.jpg'
         ];
 
-        // Sample image metadata (in real scenario, this could come from a JSON file or database)
-        const imageMetadata = {
-            'software-engineer.jpg': {
-                title: 'Software Engineer',
-                category: 'Development',
-                size: '245 KB',
-                dimensions: '1200×800',
-                description: 'Modern software development workspace with dual monitors',
-                tags: ['coding', 'programming', 'workspace', 'tech']
-            },
-            'frontend-developer.jpg': {
-                title: 'Frontend Developer',
-                category: 'Development',
-                size: '312 KB',
-                dimensions: '1200×800',
-                description: 'Frontend development with HTML, CSS and JavaScript',
-                tags: ['ui', 'coding', 'design', 'responsive']
-            },
-            'backend-developer.jpg': {
-                title: 'Backend Developer',
-                category: 'Development',
-                size: '198 KB',
-                dimensions: '1200×800',
-                description: 'Server-side programming and database management',
-                tags: ['server', 'api', 'database', 'coding']
-            },
-            'devops-engineer.jpg': {
-                title: 'DevOps Engineer',
-                category: 'Infrastructure',
-                size: '278 KB',
-                dimensions: '1200×800',
-                description: 'Cloud infrastructure and deployment automation',
-                tags: ['cloud', 'aws', 'docker', 'kubernetes']
-            },
-            'data-scientist.jpg': {
-                title: 'Data Scientist',
-                category: 'Data',
-                size: '423 KB',
-                dimensions: '1200×800',
-                description: 'Data analysis and machine learning visualization',
-                tags: ['analytics', 'ml', 'python', 'statistics']
-            },
-            'product-manager.jpg': {
-                title: 'Product Manager',
-                category: 'Management',
-                size: '289 KB',
-                dimensions: '1200×800',
-                description: 'Product planning and roadmap development',
-                tags: ['strategy', 'planning', 'agile', 'leadership']
-            },
-            'ui-ux-designer.jpg': {
-                title: 'UI/UX Designer',
-                category: 'Design',
-                size: '356 KB',
-                dimensions: '1200×800',
-                description: 'User interface and experience design workspace',
-                tags: ['design', 'wireframing', 'prototyping', 'figma']
-            },
-            'marketing-specialist.jpg': {
-                title: 'Marketing Specialist',
-                category: 'Marketing',
-                size: '267 KB',
-                dimensions: '1200×800',
-                description: 'Digital marketing and campaign management',
-                tags: ['seo', 'social-media', 'analytics', 'content']
-            },
-            'cloud-architect.jpeg': {
-                title: 'Cloud Architect',
-                category: 'Infrastructure',
-                size: '334 KB',
-                dimensions: '1200×800',
-                description: 'Cloud solution architecture and design',
-                tags: ['aws', 'azure', 'gcp', 'infrastructure']
-            },
-            'graphic-designer.jpg': {
-                title: 'Graphic Designer',
-                category: 'Design',
-                size: '401 KB',
-                dimensions: '1200×800',
-                description: 'Creative design workspace with drawing tablet',
-                tags: ['photoshop', 'illustrator', 'creative', 'art']
-            }
-        };
-
-        // Function to load images
-        function loadImages() {
-            const loading = document.getElementById('loading');
-            const imagesGrid = document.getElementById('imagesGrid');
-            const noImages = document.getElementById('noImages');
-            const imageCount = document.getElementById('imageCount');
-
-            // Simulate loading delay (remove in production)
-            setTimeout(() => {
-                loading.style.display = 'none';
-                
-                if (imageFiles.length > 0) {
-                    imagesGrid.style.display = 'grid';
-                    noImages.style.display = 'none';
-                    imageCount.textContent = `${imageFiles.length} images available`;
-                    
-                    // Clear existing images
-                    imagesGrid.innerHTML = '';
-                    
-                    // Create image cards
-                    imageFiles.forEach((filename, index) => {
-                        // Get image metadata or use defaults
-                        const metadata = imageMetadata[filename] || {
-                            title: filename.replace(/\.(jpg|jpeg)$/, '').split('-').map(word => 
-                                word.charAt(0).toUpperCase() + word.slice(1)
-                            ).join(' '),
-                            category: 'General',
-                            size: Math.floor(Math.random() * 500 + 100) + ' KB',
-                            dimensions: '1200×800',
-                            description: 'Job-related image',
-                            tags: ['job', 'career', 'professional']
-                        };
-
-                        const imageCard = createImageCard(filename, metadata, index);
-                        imagesGrid.appendChild(imageCard);
-                    });
-                } else {
-                    imagesGrid.style.display = 'none';
-                    noImages.style.display = 'block';
-                    imageCount.textContent = 'No images available';
-                }
-            }, 1000);
-        }
-
-        // Create image card element - AUTOMATICALLY SHOWS IMAGES, NO CLICK NEEDED
-        function createImageCard(filename, metadata, index) {
+        // Load images
+        const imagesGrid = document.getElementById('imagesGrid');
+        
+        imageFiles.forEach(filename => {
             const card = document.createElement('div');
             card.className = 'image-card';
-            card.setAttribute('data-filename', filename);
-            card.setAttribute('data-title', metadata.title.toLowerCase());
-            card.setAttribute('data-category', metadata.category.toLowerCase());
             
-            // Collect all tags for searching
-            const tagsString = metadata.tags.join(' ').toLowerCase();
-            card.setAttribute('data-tags', tagsString);
+            const img = document.createElement('img');
+            img.src = `jobs/${filename}`;
+            img.alt = filename;
+            img.loading = 'lazy';
+            img.onerror = function() {
+                this.src = 'https://via.placeholder.com/400x300?text=Image+Not+Found';
+            };
             
-            card.innerHTML = `
-                <div class="image-container">
-                    <img src="jobs/${filename}" 
-                         alt="${metadata.title}"
-                         onerror="this.src='https://via.placeholder.com/400x300?text=Image+Not+Found'"
-                         loading="lazy">
-                    <div class="image-badge">${metadata.category}</div>
-                </div>
-                <div class="image-info">
-                    <h3 class="image-title">${metadata.title}</h3>
-                    <div class="image-meta">
-                        <span>📁 ${metadata.size}</span>
-                        <span>📐 ${metadata.dimensions}</span>
-                    </div>
-                    <p class="image-description">${metadata.description}</p>
-                    <div class="image-tags">
-                        ${metadata.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
-                    </div>
-                </div>
-            `;
-            
-            return card;
-        }
-
-        // Search functionality
-        function setupSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const imagesGrid = document.getElementById('imagesGrid');
-            const noImages = document.getElementById('noImages');
-            const imageCards = document.querySelectorAll('.image-card');
-            
-            searchInput.addEventListener('input', (e) => {
-                const searchTerm = e.target.value.toLowerCase().trim();
-                let visibleCount = 0;
-                
-                imageCards.forEach(card => {
-                    const title = card.getAttribute('data-title');
-                    const category = card.getAttribute('data-category');
-                    const tags = card.getAttribute('data-tags');
-                    const description = card.querySelector('.image-description').textContent.toLowerCase();
-                    
-                    if (title.includes(searchTerm) || 
-                        category.includes(searchTerm) || 
-                        tags.includes(searchTerm) || 
-                        description.includes(searchTerm)) {
-                        card.style.display = 'block';
-                        visibleCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                // Show/hide no images message
-                if (visibleCount === 0) {
-                    noImages.style.display = 'block';
-                    noImages.querySelector('h3').textContent = 'No matching images found';
-                    noImages.querySelector('p').textContent = 'Try different keywords';
-                } else {
-                    noImages.style.display = 'none';
-                }
-                
-                // Update count
-                document.getElementById('imageCount').textContent = `${visibleCount} images visible`;
-            });
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            loadImages();
-            setupSearch();
+            card.appendChild(img);
+            imagesGrid.appendChild(card);
         });
     </script>
 </body>
