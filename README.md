@@ -24,9 +24,9 @@ terms.html        Terms of use (configurable template)
 404.html          Custom not-found page (GitHub Pages serves this automatically)
 robots.txt        Crawler directives + sitemap pointer
 sitemap.xml       XML sitemap for https://innovax.pk
-assets/css/style.css   Design system (tokens, components, responsive)
-assets/js/config.js    THE ONLY FILE YOU EDIT for contact/social/form settings
-assets/js/main.js      Nav, scroll reveal, config injection, form validation & submission
+assets/innovax/css/style.css   Design system (tokens, components, responsive)
+assets/innovax/js/config.js    THE ONLY FILE YOU EDIT for contact/social/form settings
+assets/innovax/js/main.js      Nav, scroll reveal, config injection, form validation & submission
 ```
 
 ## Deploy to GitHub Pages
@@ -38,7 +38,7 @@ assets/js/main.js      Nav, scroll reveal, config injection, form validation & s
    `index.html`, `solutions.html`, `features.html`, `about.html`, `demo.html`, `contact.html`,
    `privacy.html`, `terms.html`, `404.html`, `robots.txt`, `sitemap.xml`.
    (Easiest: drag the whole `innovax-website` folder contents in, or use `Add file → Upload files`.)
-4. Upload the `assets/` folder so the tree becomes `assets/css/style.css` and `assets/js/*.js`.
+4. Upload the `assets/` folder so the tree becomes `assets/innovax/css/style.css` and `assets/innovax/js/*.js`.
 5. Confirm **Settings → Pages** source is the `main` branch (root). Your existing GitHub Pages
    deployment will republish automatically.
 6. Visit `https://innovax.pk` (or the `github.io` preview) to verify.
@@ -47,7 +47,7 @@ assets/js/main.js      Nav, scroll reveal, config injection, form validation & s
 
 ## Configure contact details & forms
 
-Edit **`assets/js/config.js`** only:
+Edit **`assets/innovax/js/config.js`** only:
 
 - `email`, `phone`, `phoneHref`, `address`, `whatsapp`, `facebook`, `linkedin`.
   Any value left as `""` is automatically hidden from the UI (no dead links).
@@ -83,6 +83,6 @@ python -m http.server 8000
 ## Maintenance notes
 
 - All pages share the same header/footer markup; update nav links in every file if you add a page.
-- Colours, spacing and components live as CSS custom properties at the top of `assets/css/style.css`.
+- Colours, spacing and components live as CSS custom properties at the top of `assets/innovax/css/style.css`.
 - To add a page: copy an existing page, change the `<title>`/meta/canonical, set the active nav item,
   and add it to `sitemap.xml`.
