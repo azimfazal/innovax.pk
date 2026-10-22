@@ -1,78 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content Display</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body, html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        iframe {
-            width: 100vw;
-            height: 100vh;
-            border: none;
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Innovax HMIS — Hospital Management Software Pakistan | Innovax Technology</title>
+<meta name="description" content="Innovax HMIS is one intelligent platform for complete hospital management: patient registration, OPD, inpatient admission and discharge, laboratory, pharmacy, inventory, billing and finance. Built for hospitals in Pakistan and beyond.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Innovax Technology">
+<meta property="og:title" content="Innovax HMIS — One Intelligent Platform. Complete Hospital Management.">
+<meta property="og:description" content="Streamline hospital operations, finance, patient services, laboratory workflows and inventory on a single, secure platform.">
+<meta property="og:url" content="https://innovax.pk/">
+<link rel="canonical" href="https://innovax.pk/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <iframe id="contentFrame" title="Content"></iframe>
 
-    <script>
-        const frame = document.getElementById('contentFrame');
-        
-        function checkServerAndLoad() {
-            // Try to load a tiny image from the server to test if it's accessible
-            const testImg = new Image();
-            
-            testImg.onload = function() {
-                // Server is accessible, load it in iframe
-                console.log('Server is up');
-                frame.src = 'http://182.191.88.78';
-            };
-            
-            testImg.onerror = function() {
-                // Server is down, load fallback
-                console.log('Server is down');
-                frame.src = 'firstpage.html';
-            };
-            
-            // Add a random query param to prevent caching
-            testImg.src = 'http://182.191.88.78/favicon.ico?' + Date.now();
-        }
-        
-        // Initial check
-        checkServerAndLoad();
-        
-        // Periodically check if server comes back
-        setInterval(function() {
-            const testImg = new Image();
-            
-            testImg.onload = function() {
-                // Server is back, switch to it if we're on fallback
-                if (frame.src.includes('firstpage.html')) {
-                    console.log('Server is back, switching');
-                    frame.src = 'http://182.191.88.78';
-                }
-            };
-            
-            testImg.src = 'http://182.191.88.78/favicon.ico?' + Date.now();
-        }, 30000); // Check every 30 seconds
-    </script>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Innovax Technology home">
+      <span class="brand-mark" aria-hidden="true">IX</span>
+      <span class="brand-text"><strong>Innovax</strong><small>Technology</small></span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation"><span></span></button>
+    <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn-primary btn-sm" href="demo.html">Request a Demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero hero--center">
+    <div class="container hero-inner">
+      <div>
+        <span class="eyebrow">Innovax HMIS · Healthcare Technology</span>
+        <h1>One Intelligent Platform.<br>Complete Hospital Management.</h1>
+        <p class="lede">Innovax HMIS streamlines hospital operations, financial processes, patient services, laboratory workflows and inventory management — so your teams spend less time on paperwork and more time on patient care.</p>
+        <div class="hero-cta">
+          <a class="btn btn-teal btn-lg" href="demo.html">Request a Demo</a>
+          <a class="btn btn-ghost-light btn-lg" href="solutions.html">Explore Our Solutions</a>
+        </div>
+        <ul class="hero-points">
+          <li><span class="tick" aria-hidden="true">✓</span> Modular &amp; scalable</li>
+          <li><span class="tick" aria-hidden="true">✓</span> Role-based access</li>
+          <li><span class="tick" aria-hidden="true">✓</span> Integrated billing &amp; accounting</li>
+          <li><span class="tick" aria-hidden="true">✓</span> Built for hospital workflows</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard preview -->
+  <section class="section" aria-labelledby="dash-title">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Command centre</span>
+        <h2 id="dash-title">See your whole hospital on one screen</h2>
+        <p class="lede">Live operational, clinical and financial indicators in a single management dashboard.</p>
+      </div>
+
+      <div class="dash reveal" role="img" aria-label="Illustrative Innovax HMIS dashboard preview showing sample hospital statistics, revenue trend, department activity and recent transactions.">
+        <div class="dash-bar">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="title">Innovax HMIS — Management Dashboard</span>
+          <span class="badge">Sample data</span>
+        </div>
+        <div class="dash-body">
+          <div class="kpis">
+            <div class="kpi"><div class="label">Registered Patients</div><div class="value">12,480</div><div class="delta up">▲ 4.2%</div></div>
+            <div class="kpi"><div class="label">OPD Visits Today</div><div class="value">342</div><div class="delta up">▲ 6.8%</div></div>
+            <div class="kpi"><div class="label">Inpatient Admissions</div><div class="value">87</div><div class="delta up">▲ 2.1%</div></div>
+            <div class="kpi"><div class="label">Bed Occupancy</div><div class="value">76%</div><div class="delta down">▼ 1.4%</div></div>
+            <div class="kpi"><div class="label">Lab Orders</div><div class="value">128</div><div class="delta up">▲ 9.3%</div></div>
+            <div class="kpi"><div class="label">Daily Revenue</div><div class="value">1.24M</div><div class="delta up">▲ 5.5%</div></div>
+          </div>
+
+          <div class="dash-row">
+            <div class="panel">
+              <h4>Revenue vs Expense Trend (PKR, 000)</h4>
+              <svg viewBox="0 0 300 120" width="100%" height="150" role="presentation" aria-hidden="true">
+                <defs>
+                  <linearGradient id="revFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#1266a8" stop-opacity="0.28"/>
+                    <stop offset="100%" stop-color="#1266a8" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <g stroke="#e3e9f0" stroke-width="1">
+                  <line x1="0" y1="30" x2="300" y2="30"/><line x1="0" y1="60" x2="300" y2="60"/><line x1="0" y1="90" x2="300" y2="90"/>
+                </g>
+                <polygon fill="url(#revFill)" points="0,80 30,70 60,74 90,58 120,62 150,46 180,50 210,38 240,42 270,30 300,34 300,120 0,120"/>
+                <polyline fill="none" stroke="#0f4c81" stroke-width="2.5" stroke-linejoin="round" points="0,80 30,70 60,74 90,58 120,62 150,46 180,50 210,38 240,42 270,30 300,34"/>
+                <polyline fill="none" stroke="#14b8a6" stroke-width="2" stroke-dasharray="4 4" stroke-linejoin="round" points="0,95 30,92 60,90 90,86 120,88 150,82 180,84 210,78 240,80 270,74 300,76"/>
+              </svg>
+              <div class="legend"><span><i style="background:#0f4c81"></i>Revenue</span><span><i style="background:#14b8a6"></i>Expense</span></div>
+            </div>
+            <div class="panel">
+              <h4>Department-wise Activity</h4>
+              <div class="bars" aria-hidden="true">
+                <div class="col"><div class="bar" style="--h:88%"></div><span>OPD</span></div>
+                <div class="col"><div class="bar" style="--h:64%"></div><span>IPD</span></div>
+                <div class="col"><div class="bar" style="--h:76%"></div><span>Lab</span></div>
+                <div class="col"><div class="bar" style="--h:52%"></div><span>Pharm</span></div>
+                <div class="col"><div class="bar" style="--h:40%"></div><span>Radio</span></div>
+                <div class="col"><div class="bar" style="--h:70%"></div><span>Billing</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h4>Recent Transactions</h4>
+            <table class="dash-table">
+              <thead><tr><th>Reference</th><th>Department</th><th>Mode</th><th>Status</th><th>Amount (PKR)</th></tr></thead>
+              <tbody>
+                <tr><td>INV-20418</td><td>OPD Consultation</td><td>Cash</td><td><span class="pill pill--paid">Paid</span></td><td>3,500</td></tr>
+                <tr><td>INV-20419</td><td>Laboratory</td><td>Card</td><td><span class="pill pill--paid">Paid</span></td><td>8,200</td></tr>
+                <tr><td>INV-20420</td><td>Inpatient / Bed</td><td>Cash</td><td><span class="pill pill--pend">Pending</span></td><td>24,750</td></tr>
+                <tr><td>INV-20421</td><td>Pharmacy</td><td>Cash</td><td><span class="pill pill--paid">Paid</span></td><td>1,940</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <p class="small muted" style="text-align:center;margin-top:var(--s4)">Demonstration preview using fictional sample data. No real patient or hospital information is shown.</p>
+    </div>
+  </section>
+
+  <!-- Key benefits -->
+  <section class="section section--soft" aria-labelledby="benefits-title">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Why Innovax HMIS</span>
+        <h2 id="benefits-title">Built to make hospitals run better</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div><h3>Operational Efficiency</h3><p>Replace paper registers and disconnected spreadsheets with unified digital workflows across registration, clinical, lab and finance teams.</p></div>
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6l-8-4z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Financial Transparency</h3><p>Every bill, receipt and journal entry is traceable. Integrated billing, cashier sessions and general ledger keep accounts audit-ready.</p></div>
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6a3 3 0 0 1 3 3v6"/></svg></div><h3>Integrated Workflows</h3><p>An OPD order flows straight to the lab, the cashier queue and the report — no re-entry, no lost paperwork, no duplicated effort.</p></div>
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><h3>Better Decision Support</h3><p>Management dashboards and reports turn day-to-day activity into clear indicators for occupancy, revenue and departmental load.</p></div>
+        <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/></svg></div><h3>Scalable Architecture</h3><p>Start with the modules you need today and add more as your hospital grows — the modular design keeps every step affordable.</p></div>
+        <div class="card card--teal reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>Accountability &amp; Audit Trails</h3><p>Role-based access and per-user activity records make it clear who did what, and when — across clinical and financial operations.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured solutions -->
+  <section class="section" aria-labelledby="solutions-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Featured solutions</span>
+        <h2 id="solutions-title">Everything a modern hospital needs</h2>
+        <p class="lede">From the front desk to the back office, Innovax HMIS covers the full patient and revenue cycle.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal"><h3>Hospital Management (HMIS)</h3><p>Central patient registry, OPD and inpatient encounters, admissions, bed allocation and discharge on one record.</p><span class="tag tag--live">Available</span></div>
+        <div class="card reveal"><h3>Laboratory (LIS)</h3><p>Order-to-report workflow with specimen tracking, result entry, verification and release — plus analyzer integration capability.</p><span class="tag tag--live">Available</span></div>
+        <div class="card reveal"><h3>Billing &amp; Finance</h3><p>Service billing, cashier sessions, receipts, refunds and a full general ledger with journal vouchers and fiscal periods.</p><span class="tag tag--live">Available</span></div>
+        <div class="card reveal"><h3>Radiology &amp; PACS</h3><p>Radiology ordering and booking with worklist publishing to PACS for filmless imaging workflows.</p><span class="tag tag--live">Available</span></div>
+        <div class="card reveal"><h3>Pharmacy &amp; Inventory</h3><p>Medicine catalog, stock movement and procurement tracking to keep wards and stores supplied.</p><span class="tag tag--plan">In rollout</span></div>
+        <div class="card reveal"><h3>HR &amp; Attendance</h3><p>Staff records, shifts and attendance integrated with payroll-ready reporting.</p><span class="tag tag--plan">Planned</span></div>
+      </div>
+      <p style="margin-top:var(--s6)"><a class="btn btn-outline" href="solutions.html">View all solutions</a></p>
+    </div>
+  </section>
+
+  <!-- Implementation & support -->
+  <section class="section section--soft" aria-labelledby="impl-title">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">How we work</span>
+        <h2 id="impl-title">A practical implementation approach</h2>
+        <p class="lede">We deploy in stages so your hospital keeps running while it modernises.</p>
+      </div>
+      <div class="steps" style="max-width:760px;margin-inline:auto">
+        <div class="step reveal"><h3>Discover</h3><p>We map your current registration, clinical, lab and finance workflows and agree the module set and rollout order.</p></div>
+        <div class="step reveal"><h3>Configure</h3><p>Departments, wards, beds, service tariffs, users and roles are configured to match how your hospital actually operates.</p></div>
+        <div class="step reveal"><h3>Train &amp; go live</h3><p>Hands-on training for each team, then a supervised go-live with our team on site or on call.</p></div>
+        <div class="step reveal"><h3>Support &amp; improve</h3><p>Ongoing support, backups and continuous improvement as your needs evolve.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section-head center"><span class="eyebrow">FAQ</span><h2 id="faq-title">Frequently asked questions</h2></div>
+      <div class="faq">
+        <details class="reveal"><summary>Can we start with only a few modules?</summary><div class="faq-body">Yes. Innovax HMIS is modular. Many hospitals begin with patient registration, OPD and billing, then add laboratory, inpatient and inventory modules later without re-implementing anything.</div></details>
+        <details class="reveal"><summary>Is our data kept separate and secure?</summary><div class="faq-body">Access is controlled by role, and every deployment is installed in your own environment with your own backup strategy. We do not publish or share hospital data, and the marketing site never collects patient information.</div></details>
+        <details class="reveal"><summary>Does the laboratory module connect to analyzers?</summary><div class="faq-body">The LIS supports an analyzer-integration pathway for result capture. Specific analyzer models are confirmed during the discovery phase so we can scope the integration accurately.</div></details>
+        <details class="reveal"><summary>How long does implementation take?</summary><div class="faq-body">It depends on the module set and hospital size. A focused first phase (registration, OPD, billing) is typically live within weeks; full multi-department rollouts are phased over a longer schedule agreed with your team.</div></details>
+        <details class="reveal"><summary>Do you provide training and after-go-live support?</summary><div class="faq-body">Yes. Every rollout includes role-based training and a supervised go-live, followed by ongoing support and continuous improvement of the configured workflows.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <h2>Ready to modernise your hospital?</h2>
+        <p>See Innovax HMIS on your own workflows. Book a demo and we will walk your team through the modules that matter most to you.</p>
+        <div class="hero-cta">
+          <a class="btn btn-teal btn-lg" href="demo.html">Request a Demo</a>
+          <a class="btn btn-ghost-light btn-lg" href="contact.html">Talk to Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Innovax Technology home">
+          <span class="brand-mark" aria-hidden="true">IX</span>
+          <span class="brand-text"><strong>Innovax</strong><small>Technology</small></span>
+        </a>
+        <p class="small" style="margin-top:var(--s4)">Transforming healthcare through intelligent technology. Hospital management, laboratory, billing and inventory software built for real hospital workflows.</p>
+        <div class="social">
+          <a data-contact="facebook" href="#" aria-label="Innovax on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.3-1.5 1.6-1.5H16.5V2.2C15.9 2.1 14.9 2 13.8 2 10.9 2 9 3.7 9 6.9V10H6v4h3v8h4z"/></svg></a>
+          <a data-contact="linkedin" href="#" aria-label="Innovax on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21H9z"/></svg></a>
+          <a data-contact="whatsapp" href="#" aria-label="Innovax on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="solutions.html#hmis">Hospital Management</a></li>
+          <li><a href="solutions.html#lis">Laboratory (LIS)</a></li>
+          <li><a href="solutions.html#finance">Billing &amp; Finance</a></li>
+          <li><a href="solutions.html#inventory">Pharmacy &amp; Inventory</a></li>
+          <li><a href="solutions.html#radiology">Radiology &amp; PACS</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="demo.html">Request a Demo</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a data-contact="email" href="#">info@innovax.pk</a></li>
+          <li><span data-contact="phone"></span></li>
+          <li><span data-contact="address"></span></li>
+          <li><a data-contact="whatsapp" href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-note">
+      <span>© <span data-year>2026</span> Innovax Technology. All rights reserved.</span>
+      <span>innovax.pk · Hospital Management Software, Pakistan</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
