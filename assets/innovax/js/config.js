@@ -29,4 +29,3 @@ window.INNOVAX_CONFIG = {
   /* Site origin used in sitemap/canonical hints */
   siteUrl: "https://innovax.pk"
 };
-

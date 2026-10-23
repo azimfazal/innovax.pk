@@ -70,6 +70,19 @@
     el.textContent = String(new Date().getFullYear());
   });
 
+  /* ---------- Floating WhatsApp button (every page) ---------- */
+  if (CONFIG.whatsapp) {
+    var wa = document.createElement("a");
+    wa.className = "wa-float";
+    wa.href = CONFIG.whatsapp;
+    wa.target = "_blank";
+    wa.rel = "noopener noreferrer";
+    wa.setAttribute("aria-label", "Chat with Innovax on WhatsApp");
+    wa.title = "Chat on WhatsApp";
+    wa.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l2 1c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>';
+    document.body.appendChild(wa);
+  }
+
   /* ---------- Form validation + honest submission ---------- */
   var validators = {
     text: function (v) { return v.trim().length >= 2 || "Please enter at least 2 characters."; },
@@ -179,4 +192,3 @@
     });
   });
 })();
-
