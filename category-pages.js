@@ -50,7 +50,8 @@ const catalogs={
     ["722949","Adjustable Selfie Stick with Tripod Stand & Bluetooth Remote","PKR 1,239","https://static.markaz.app/pakistan/thumbnails/products/2290-212-718450-product-3.webp"],
     ["702640","Black ABS Binoculars 12x7 for Outdoor Adventures","PKR 3,620","https://static.markaz.app/pakistan/thumbnails/products/854-212-702640-product-1.webp"],
     ["616910","Portable Rainbow Camera with Adjustable Stand Black ABS","PKR 1,719","https://static.markaz.app/pakistan/thumbnails/products/943-212-616910-product-1.webp"]
-  ]
+  ],
+  kitchen:(window.KITCHEN_PRODUCTS||[]).map(product=>[product.id,product.name,product.price,product.image])
 };
 
 const page=document.getElementById("categoryPage");
@@ -62,6 +63,20 @@ for(const [id,name,price,image] of list){
   const card=document.createElement("article");
   card.className="product";
   card.dataset.search=name.toLowerCase();
+  const detailsUrl=`ProductDetails.html?id=${encodeURIComponent(id)}&category=${encodeURIComponent(page.dataset.category)}`;
+  card.tabIndex=0;
+  card.setAttribute("role","link");
+  card.setAttribute("aria-label",`View details for ${name}`);
+  card.addEventListener("click",event=>{
+    if(event.target.closest("a,button,input,select,textarea")) return;
+    location.href=detailsUrl;
+  });
+  card.addEventListener("keydown",event=>{
+    if(event.key==="Enter"){
+      event.preventDefault();
+      location.href=detailsUrl;
+    }
+  });
   const photo=document.createElement("div");
   photo.className="photo";
   const img=document.createElement("img");
@@ -72,7 +87,7 @@ for(const [id,name,price,image] of list){
   const heading=document.createElement("h3"); heading.textContent=name;
   const priceEl=document.createElement("div"); priceEl.className="price"; priceEl.textContent=price;
   const details=document.createElement("a"); details.className="details"; details.textContent="View product details →";
-  details.href=`ProductDetails.html?id=${encodeURIComponent(id)}&category=${encodeURIComponent(page.dataset.category)}`;
+  details.href=detailsUrl;
   const ask=document.createElement("a"); ask.className="ask"; ask.target="_blank"; ask.rel="noopener noreferrer"; ask.textContent="Ask on WhatsApp";
   ask.href="https://wa.me/923139849131?text="+encodeURIComponent(`Hi Innovax, I'm interested in ${name} (${price}).`);
   info.append(badge,heading,priceEl,details,ask); card.append(photo,info); grid.appendChild(card);

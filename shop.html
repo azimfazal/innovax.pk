@@ -19,14 +19,16 @@
     .hero{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:10px;padding:4px clamp(10px,1vw,16px) 18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin}
     .feature{height:405px;position:relative;border-radius:17px;overflow:hidden;box-shadow:0 3px 8px #15253520;scroll-snap-align:start;background:#d9e4df;isolation:isolate;transition:transform .2s}.feature:hover{transform:translateY(-3px)}
     .feature img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:-2}.feature:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#fff9 0%,transparent 43%,#0002 100%)}
-    .feature-copy{padding:17px 16px}.feature h2{font-size:25px;line-height:1.1;margin:0;max-width:260px;letter-spacing:-.7px}.feature a{display:inline-block;margin-top:12px;padding:9px 13px;background:#fff;border-radius:5px;font-size:12px;font-weight:700;box-shadow:0 2px 8px #17212b20}
+    .feature-copy{padding:17px 16px}.feature h2{font-size:25px;line-height:1.1;margin:0;max-width:260px;letter-spacing:-.7px}.feature-cta{display:inline-block;margin-top:12px;padding:9px 13px;background:#fff;border-radius:5px;font-size:12px;font-weight:700;box-shadow:0 2px 8px #17212b20}
     .shelf{margin:0 clamp(10px,1vw,16px) 18px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px 15px 18px}.shelf-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.shelf h2{font-size:18px;margin:0;letter-spacing:-.3px}.shelf-head a{color:#285d77;font-size:13px;font-weight:700}.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.tile{min-width:0;border-radius:10px;overflow:hidden;background:#eef2f3;position:relative}.tile img{display:block;width:100%;height:148px;object-fit:cover;transition:transform .25s}.tile:hover img{transform:scale(1.04)}.tile span{display:block;padding:10px 12px;font-size:14px;font-weight:700;background:#fff}
+    .trend-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.trend-card{min-width:0;overflow:hidden;border:1px solid #e1e6e8;border-radius:11px;background:#fff;transition:transform .18s,box-shadow .18s}.trend-card:hover{transform:translateY(-3px);box-shadow:0 7px 18px #15253518}.trend-card img{display:block;width:100%;height:190px;object-fit:contain;background:#f7f8f8;padding:12px}.trend-copy{padding:11px 12px 13px}.trend-copy small{display:block;color:#258266;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em}.trend-copy strong{display:block;min-height:38px;margin:5px 0 8px;font-size:14px;line-height:1.35}.trend-price{font-size:15px;font-weight:800;color:#183f35}
     .banner{margin:0 clamp(10px,1vw,16px) 20px;border-radius:14px;min-height:112px;padding:22px 28px;background:#f9dfaa;display:flex;align-items:center;justify-content:space-between;gap:20px}.banner h2{margin:0 0 5px;font-size:21px}.banner p{margin:0;color:#4e5660;font-size:14px}.banner a{background:var(--navy);color:white;border-radius:5px;padding:11px 16px;font-size:13px;font-weight:700;white-space:nowrap}
     footer{background:var(--navy);color:#e2e9ec;text-align:center;padding:26px 16px;font-size:12px}footer b{font-size:16px;color:white}footer p{margin:8px 0 0}
     .empty{display:none;margin:0 clamp(10px,1vw,16px) 20px;padding:24px;background:#fff;border-radius:12px;color:var(--muted)}
     .whatsapp{position:fixed;right:20px;bottom:20px;z-index:10;width:58px;height:58px;display:grid;place-items:center;border-radius:50%;background:#25d366;color:#fff;box-shadow:0 4px 14px #10252e45;transition:transform .18s,box-shadow .18s}.whatsapp:hover{transform:translateY(-3px);box-shadow:0 7px 18px #10252e55}.whatsapp svg{width:31px;height:31px}.whatsapp:focus-visible{outline:3px solid #132b3a;outline-offset:3px}
     @media(max-width:900px){.topbar{gap:12px}.delivery,.toplink.account{display:none}.hero{grid-auto-columns:minmax(230px,31vw)}.feature{height:350px}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:560px){.topbar{height:58px;gap:10px}.brand{font-size:23px}.toplink.orders{display:none}.cart{padding:7px}.nav{gap:20px;min-height:40px}.intro{align-items:start;flex-direction:column;padding-top:17px}.hero{grid-auto-columns:78vw}.feature{height:360px}.feature h2{font-size:24px}.tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tile img{height:118px}.shelf{padding:13px 11px}.shelf h2{font-size:16px}.banner{align-items:flex-start;flex-direction:column;padding:20px}.banner a{white-space:normal}}
+    @media(max-width:900px){.trend-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.trend-card img{height:170px}}
+    @media(max-width:560px){.topbar{height:58px;gap:10px}.brand{font-size:23px}.toplink.orders{display:none}.cart{padding:7px}.nav{gap:20px;min-height:40px}.intro{align-items:start;flex-direction:column;padding-top:17px}.hero{grid-auto-columns:78vw}.feature{height:360px}.feature h2{font-size:24px}.tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tile img{height:118px}.shelf{padding:13px 11px}.shelf h2{font-size:16px}.trend-grid{gap:8px}.trend-card img{height:140px;padding:8px}.trend-copy{padding:9px}.trend-copy strong{font-size:13px}.banner{align-items:flex-start;flex-direction:column;padding:20px}.banner a{white-space:normal}}
   </style>
 </head>
 <body>
@@ -54,7 +56,7 @@
     </section>
 
     <section class="hero" aria-label="Featured collections">
-      <article class="feature" style="background:#d9e5e1"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=85" alt="Bright modern kitchen"><div class="feature-copy"><h2>Little upgrades for your kitchen</h2><a href="#collections">Explore home</a></div></article>
+      <a class="feature" href="KitchenAccessories.html" aria-label="Shop Kitchen Accessories" style="background:#d9e5e1"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=85" alt="Bright modern kitchen"><div class="feature-copy"><h2>Little upgrades for your kitchen</h2><span class="feature-cta">Explore home</span></div></a>
       <article class="feature" style="background:#f3d6d0"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=85" alt="Beauty products and makeup"><div class="feature-copy"><h2>Your everyday beauty picks</h2><a href="#collections">Discover beauty</a></div></article>
       <article class="feature" style="background:#ded8cf"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=85" alt="Curated clothing collection"><div class="feature-copy"><h2>Refresh your everyday style</h2><a href="#collections">Shop style</a></div></article>
       <article class="feature" style="background:#d6e5ef"><img src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=800&q=85" alt="Colourful toys for children"><div class="feature-copy"><h2>Make playtime a little brighter</h2><a href="#collections">Shop toys</a></div></article>
@@ -79,23 +81,69 @@
       </div>
     </section>
 
+    <section class="shelf" id="top-trends" aria-labelledby="trendHeading">
+      <div class="shelf-head"><h2 id="trendHeading">Top trends</h2><a href="https://www.markaz.app/shop/deck/%2Fapi%2Fdecks%2Ftrending%2Fv1?label=Trending+Products+%F0%9F%94%A5&amp;labelType=product" target="_blank" rel="noopener noreferrer">More on Markaz&nbsp; ↗</a></div>
+      <div class="trend-grid">
+        <a class="trend-card" href="ProductDetails.html?id=661215&amp;category=trends" data-search="top trends earbuds wireless bluetooth electronics">
+          <img src="https://static.markaz.app/pakistan/products/704-86-661215-product-1.webp" alt="Premium wireless earbuds, black and yellow" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>Premium Wireless Earbuds Black Yellow Bluetooth 5.3</strong><span class="trend-price">PKR 1,119</span></div>
+        </a>
+        <a class="trend-card" href="ProductDetails.html?id=464059&amp;category=trends" data-search="top trends islamic wooden wall clock home decor">
+          <img src="https://static.markaz.app/pakistan/products/1261-119-464059-product-1.jpg" alt="3D Islamic wooden wall clock in black" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>3D Islamic Wooden Wall Clock Black Modern Design</strong><span class="trend-price">PKR 819</span></div>
+        </a>
+        <a class="trend-card" href="ProductDetails.html?id=677566&amp;category=trends" data-search="top trends kitchen soap dispenser sponge holder">
+          <img src="https://static.markaz.app/pakistan/products/594-381-677566-product-1.webp" alt="2-in-1 soap dispenser and sponge holder" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>2-in-1 Soap Dispenser &amp; Sponge Holder</strong><span class="trend-price">PKR 1,019</span></div>
+        </a>
+        <a class="trend-card" href="ProductDetails.html?id=712562&amp;category=trends" data-search="top trends fitness exercise twister disc wellness">
+          <img src="https://static.markaz.app/pakistan/thumbnails/products/1155-223-712562-product-2.webp" alt="Black twister core exercise disc" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>Black Twister Core Fat Burning Disc</strong><span class="trend-price">PKR 849</span></div>
+        </a>
+      </div>
+    </section>
+
     <section class="shelf" id="collections">
       <div class="shelf-head"><h2>Popular picks for your day</h2><a href="#deals">See all&nbsp; ›</a></div>
-      <div class="tiles">
-        <a class="tile" href="#deals" data-search="electronics headphones audio"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" alt="Wireless headphones"><span>Everyday electronics</span></a>
-        <a class="tile" href="#deals" data-search="home decor living"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Warm, modern home interior"><span>Make home feel like you</span></a>
-        <a class="tile" href="#deals" data-search="fitness sport wellness"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80" alt="Fitness training"><span>Gear up and get moving</span></a>
-        <a class="tile" href="#deals" data-search="fashion apparel clothing"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80" alt="Friends shopping for clothes"><span>Style for every day</span></a>
+      <div class="trend-grid">
+        <a class="trend-card" href="ProductDetails.html?id=446645&amp;category=trends" data-search="men rings jewellery turkish silver plated">
+          <img src="https://static.markaz.app/pakistan/products/1013-44-446645-product-1.jpg" alt="Turkish-inspired men's three-ring set" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>Turkish-Inspired Men's Ring Set of 3</strong><span class="trend-price">PKR 640</span></div>
+        </a>
+        <a class="trend-card" href="ProductDetails.html?id=673374&amp;category=trends" data-search="umrah savings box wooden gift islamic">
+          <img src="https://static.markaz.app/pakistan/products/1261-273-673374-product-1.webp" alt="Black and gold wooden Umrah savings box" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>Umrah Savings Box Golden Black Wood</strong><span class="trend-price">PKR 719</span></div>
+        </a>
+        <a class="trend-card" href="ProductDetails.html?id=686194&amp;category=trends" data-search="orange enzymes brightening gel skin care cosmetics">
+          <img src="https://static.markaz.app/pakistan/products/1004-77-686194-product-1.webp" alt="Orange enzymes brightening gel" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>Orange Enzymes Gel for All Skin Types</strong><span class="trend-price">PKR 659</span></div>
+        </a>
+        <a class="trend-card" href="ProductDetails.html?id=551157&amp;category=trends" data-search="wireless earbuds anc water resistant electronics audio">
+          <img src="https://static.markaz.app/pakistan/products/1155-86-551157-product-1.jpg" alt="White wireless earbuds with ANC" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>Wireless Earbuds with ANC &amp; Water Resistance</strong><span class="trend-price">PKR 1,136</span></div>
+        </a>
       </div>
     </section>
 
     <section class="shelf" id="deals">
       <div class="shelf-head"><h2>Discover more at Innovax</h2><a href="#featured">Back to top&nbsp; ↑</a></div>
-      <div class="tiles">
-        <a class="tile" href="#collections" data-search="kitchen coffee appliances"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Freshly prepared coffee"><span>Kitchen must-haves</span></a>
-        <a class="tile" href="#collections" data-search="travel bags luggage"><img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=600&q=80" alt="Green forest trail"><span>Ready for your next trip</span></a>
-        <a class="tile" href="#collections" data-search="desk workspace accessories"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Laptop and workspace"><span>Build your workspace</span></a>
-        <a class="tile" href="#collections" data-search="gifts deals offers"><img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=600&q=80" alt="Wrapped gifts"><span>Gifts for every occasion</span></a>
+      <div class="trend-grid">
+        <a class="trend-card" href="ProductDetails.html?id=383904&amp;category=trends" data-search="rainbow inflatable swimming pool kids toys outdoor">
+          <img src="https://static.markaz.app/pakistan/products/1126-45-383904-product-2.jpg" alt="Rainbow inflatable pool for children" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>Rainbow Inflatable Pool for Kids</strong><span class="trend-price">PKR 2,020</span></div>
+        </a>
+        <a class="trend-card" href="ProductDetails.html?id=618132&amp;category=trends" data-search="46 piece socket wrench tool set hardware">
+          <img src="https://static.markaz.app/pakistan/products/163-125-618132-product-1.jpg" alt="46-piece socket wrench set in red case" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>46-Piece Socket Wrench Tool Set</strong><span class="trend-price">PKR 2,022</span></div>
+        </a>
+        <a class="trend-card" href="ProductDetails.html?id=722658&amp;category=trends" data-search="ultra smart watch four straps electronics wearable">
+          <img src="https://static.markaz.app/pakistan/products/2444-87-722658-product-1.webp" alt="Ultra smart watch with four straps" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>Ultra Smart Watch with 4 Straps Set</strong><span class="trend-price">PKR 1,909</span></div>
+        </a>
+        <a class="trend-card" href="ProductDetails.html?id=619286&amp;category=trends" data-search="mini wifi camera electronics security camera">
+          <img src="https://static.markaz.app/pakistan/thumbnails/products/1172-212-619286-product-1.jpg" alt="Mini WiFi camera" loading="lazy">
+          <div class="trend-copy"><small>Trending on Markaz</small><strong>Mini WiFi Camera with 150° View</strong><span class="trend-price">PKR 1,290</span></div>
+        </a>
       </div>
     </section>
     <section class="banner"><div><h2>A little something for everyone</h2><p>Browse fresh finds across home, tech, style and more.</p></div><a href="#collections">Explore the shop&nbsp; →</a></section>
@@ -110,7 +158,7 @@
     document.getElementById("searchForm").addEventListener("submit", event => {
       event.preventDefault();
       const term = document.getElementById("searchInput").value.trim().toLowerCase();
-      const tiles = [...document.querySelectorAll(".tile")];
+      const tiles = [...document.querySelectorAll(".tile, .trend-card")];
       let visible = 0;
       tiles.forEach(tile => {
         const match = !term || (tile.dataset.search + " " + tile.textContent).toLowerCase().includes(term);
