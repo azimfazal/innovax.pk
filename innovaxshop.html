@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#132b3a">
+  <title>Innovax Shop | Discover something great</title>
+  <style>
+    :root{font-family:Arial,Helvetica,sans-serif;color:#17212b;background:#f3f5f6;font-synthesis:none;text-rendering:optimizeLegibility;--navy:#132b3a;--navy2:#203746;--orange:#f6a623;--muted:#596875;--line:#d8dfe3}
+    *{box-sizing:border-box}body{margin:0}a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}
+    .topbar{height:66px;background:var(--navy);color:#fff;display:flex;align-items:center;gap:20px;padding:0 clamp(14px,2vw,30px);position:sticky;top:0;z-index:5}
+    .brand{font-size:27px;font-weight:800;letter-spacing:-1.5px;white-space:nowrap}.brand em{font-style:normal;color:var(--orange)}
+    .delivery{font-size:12px;line-height:1.2;color:#dbe5e9;white-space:nowrap}.delivery b{display:block;color:#fff;font-size:14px;margin-top:2px}
+    .search{height:42px;display:flex;flex:1;min-width:120px;border-radius:6px;overflow:hidden;background:#fff}.search input{border:0;outline:0;padding:0 14px;min-width:0;flex:1;color:#202c35}.search button{border:0;background:#f9b84d;width:52px;font-size:20px;color:#17212b}
+    .toplink{font-size:12px;line-height:1.15;white-space:nowrap}.toplink b{display:block;font-size:14px}.cart{border:1px solid #81909a;padding:8px 10px;border-radius:4px;font-weight:700;white-space:nowrap}
+    .nav{min-height:42px;background:var(--navy2);color:#fff;display:flex;align-items:center;gap:28px;padding:0 clamp(14px,2vw,30px);font-size:13px;overflow-x:auto;white-space:nowrap}.nav a:hover{text-decoration:underline;color:#ffd38a}
+    .intro{padding:22px clamp(14px,2vw,30px) 12px;display:flex;align-items:end;justify-content:space-between;gap:16px}.intro h1{font-size:23px;margin:0 0 5px;letter-spacing:-.4px}.intro p{margin:0;color:var(--muted);font-size:14px}.intro .tag{font-size:12px;color:#536571}
+    .hero{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:10px;padding:4px clamp(10px,1vw,16px) 18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin}
+    .feature{height:405px;position:relative;border-radius:17px;overflow:hidden;box-shadow:0 3px 8px #15253520;scroll-snap-align:start;background:#d9e4df;isolation:isolate;transition:transform .2s}.feature:hover{transform:translateY(-3px)}
+    .feature img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:-2}.feature:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#fff9 0%,transparent 43%,#0002 100%)}
+    .feature-copy{padding:17px 16px}.feature h2{font-size:25px;line-height:1.1;margin:0;max-width:260px;letter-spacing:-.7px}.feature a{display:inline-block;margin-top:12px;padding:9px 13px;background:#fff;border-radius:5px;font-size:12px;font-weight:700;box-shadow:0 2px 8px #17212b20}
+    .shelf{margin:0 clamp(10px,1vw,16px) 18px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px 15px 18px}.shelf-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.shelf h2{font-size:18px;margin:0;letter-spacing:-.3px}.shelf-head a{color:#285d77;font-size:13px;font-weight:700}.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.tile{min-width:0;border-radius:10px;overflow:hidden;background:#eef2f3;position:relative}.tile img{display:block;width:100%;height:148px;object-fit:cover;transition:transform .25s}.tile:hover img{transform:scale(1.04)}.tile span{display:block;padding:10px 12px;font-size:14px;font-weight:700;background:#fff}
+    .banner{margin:0 clamp(10px,1vw,16px) 20px;border-radius:14px;min-height:112px;padding:22px 28px;background:#f9dfaa;display:flex;align-items:center;justify-content:space-between;gap:20px}.banner h2{margin:0 0 5px;font-size:21px}.banner p{margin:0;color:#4e5660;font-size:14px}.banner a{background:var(--navy);color:white;border-radius:5px;padding:11px 16px;font-size:13px;font-weight:700;white-space:nowrap}
+    footer{background:var(--navy);color:#e2e9ec;text-align:center;padding:26px 16px;font-size:12px}footer b{font-size:16px;color:white}footer p{margin:8px 0 0}
+    .empty{display:none;margin:0 clamp(10px,1vw,16px) 20px;padding:24px;background:#fff;border-radius:12px;color:var(--muted)}
+    @media(max-width:900px){.topbar{gap:12px}.delivery,.toplink.account{display:none}.hero{grid-auto-columns:minmax(230px,31vw)}.feature{height:350px}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:560px){.topbar{height:58px;gap:10px}.brand{font-size:23px}.toplink.orders{display:none}.cart{padding:7px}.nav{gap:20px;min-height:40px}.intro{align-items:start;flex-direction:column;padding-top:17px}.hero{grid-auto-columns:78vw}.feature{height:360px}.feature h2{font-size:24px}.tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tile img{height:118px}.shelf{padding:13px 11px}.shelf h2{font-size:16px}.banner{align-items:flex-start;flex-direction:column;padding:20px}.banner a{white-space:normal}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <a class="brand" href="#home" aria-label="Innovax home">innovax<em>.</em></a>
+      <div class="delivery">Deliver to<b>Pakistan</b></div>
+      <form class="search" id="searchForm" role="search">
+        <input id="searchInput" type="search" placeholder="Search Innovax Shop" aria-label="Search products">
+        <button type="submit" aria-label="Search">⌕</button>
+      </form>
+      <a class="toplink account" href="#featured">Welcome to<b>Innovax Shop</b></a>
+      <a class="toplink orders" href="#collections">Explore<b>Collections</b></a>
+      <a class="cart" href="#collections" aria-label="Shopping basket">🛒 <span id="cartCount">0</span></a>
+    </div>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#home">☰ &nbsp;All</a><a href="#collections">Electronics</a><a href="#collections">Home & Living</a><a href="#featured">New Arrivals</a><a href="#deals">Special Offers</a><a href="#about">About Innovax</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="intro" id="featured">
+      <div><h1>Find your next favourite</h1><p>Everyday essentials and thoughtful finds, all in one place.</p></div>
+      <span class="tag">A better way to shop with Innovax</span>
+    </section>
+
+    <section class="hero" aria-label="Featured collections">
+      <article class="feature" style="background:#d9e5e1"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=85" alt="Bright modern kitchen"><div class="feature-copy"><h2>Little upgrades for your kitchen</h2><a href="#collections">Explore home</a></div></article>
+      <article class="feature" style="background:#f3d6d0"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=85" alt="Beauty products and makeup"><div class="feature-copy"><h2>Your everyday beauty picks</h2><a href="#collections">Discover beauty</a></div></article>
+      <article class="feature" style="background:#ded8cf"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=85" alt="Curated clothing collection"><div class="feature-copy"><h2>Refresh your everyday style</h2><a href="#collections">Shop style</a></div></article>
+      <article class="feature" style="background:#d6e5ef"><img src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=800&q=85" alt="Colourful toys for children"><div class="feature-copy"><h2>Make playtime a little brighter</h2><a href="#collections">Shop toys</a></div></article>
+      <article class="feature" style="background:#f2d6e8"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=85" alt="Laptop on a desk"><div class="feature-copy"><h2>Level up your workspace</h2><a href="#collections">Explore tech</a></div></article>
+    </section>
+
+    <section class="shelf" id="collections">
+      <div class="shelf-head"><h2>Popular picks for your day</h2><a href="#deals">See all&nbsp; ›</a></div>
+      <div class="tiles">
+        <a class="tile" href="#deals" data-search="electronics headphones audio"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" alt="Wireless headphones"><span>Everyday electronics</span></a>
+        <a class="tile" href="#deals" data-search="home decor living"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Warm, modern home interior"><span>Make home feel like you</span></a>
+        <a class="tile" href="#deals" data-search="fitness sport wellness"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80" alt="Fitness training"><span>Gear up and get moving</span></a>
+        <a class="tile" href="#deals" data-search="fashion apparel clothing"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80" alt="Friends shopping for clothes"><span>Style for every day</span></a>
+      </div>
+    </section>
+
+    <section class="shelf" id="deals">
+      <div class="shelf-head"><h2>Discover more at Innovax</h2><a href="#featured">Back to top&nbsp; ↑</a></div>
+      <div class="tiles">
+        <a class="tile" href="#collections" data-search="kitchen coffee appliances"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Freshly prepared coffee"><span>Kitchen must-haves</span></a>
+        <a class="tile" href="#collections" data-search="travel bags luggage"><img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=600&q=80" alt="Green forest trail"><span>Ready for your next trip</span></a>
+        <a class="tile" href="#collections" data-search="desk workspace accessories"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Laptop and workspace"><span>Build your workspace</span></a>
+        <a class="tile" href="#collections" data-search="gifts deals offers"><img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=600&q=80" alt="Wrapped gifts"><span>Gifts for every occasion</span></a>
+      </div>
+    </section>
+    <section class="banner"><div><h2>A little something for everyone</h2><p>Browse fresh finds across home, tech, style and more.</p></div><a href="#collections">Explore the shop&nbsp; →</a></section>
+    <p class="empty" id="emptyState" role="status">No matching collections. Try another search.</p>
+  </main>
+  <footer id="about"><b>innovax<span style="color:#f6a623">.</span></b><p>Thoughtful finds for everyday life · Pakistan</p><p>© <span id="year"></span> Innovax</p></footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("searchForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const term = document.getElementById("searchInput").value.trim().toLowerCase();
+      const tiles = [...document.querySelectorAll(".tile")];
+      let visible = 0;
+      tiles.forEach(tile => {
+        const match = !term || (tile.dataset.search + " " + tile.textContent).toLowerCase().includes(term);
+        tile.hidden = !match;
+        if (match) visible++;
+      });
+      document.getElementById("emptyState").style.display = visible ? "none" : "block";
+      document.getElementById("collections").scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
