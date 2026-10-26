@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#132b3a">
+  <title>Health Accessories | Innovax Shop</title>
+  <style>
+    :root{font-family:Arial,Helvetica,sans-serif;color:#18232c;background:#f4f6f7;font-synthesis:none;text-rendering:optimizeLegibility;--navy:#132b3a;--muted:#5b6872;--line:#dfe5e8;--green:#178367}
+    *{box-sizing:border-box}body{margin:0}a{color:inherit;text-decoration:none}button,input{font:inherit}
+    header{background:var(--navy);color:white}.topbar{height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(16px,4vw,58px)}.brand{font-size:27px;font-weight:800;letter-spacing:-1.5px}.brand span{color:#f6a623}.topnote{font-size:13px;color:#d9e3e8}.back{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border-radius:6px;padding:10px 14px;font-size:13px;font-weight:700}.back:hover{background:#f2f4f5}
+    .crumb{max-width:1180px;margin:auto;padding:17px 20px;color:#71808a;font-size:13px}.crumb a:hover{color:var(--green);text-decoration:underline}
+    main{max-width:1180px;margin:0 auto;padding:0 20px 42px}.hero{position:relative;overflow:hidden;border-radius:22px;padding:clamp(24px,5vw,54px);background:linear-gradient(125deg,#fff0dc,#f7cfaa 58%,#efad7d);color:#35291f}.hero:after{content:"✚";position:absolute;right:6%;top:-38px;font-size:220px;color:#fff;opacity:.22;transform:rotate(14deg);pointer-events:none}.eyebrow{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;font-weight:800;color:#795c45}.hero h1{font-size:clamp(30px,5vw,48px);letter-spacing:-1.5px;line-height:1.05;margin:11px 0 12px;max-width:610px}.hero p{font-size:15px;line-height:1.6;color:#604c3e;max-width:560px;margin:0}
+    .toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 16px}.toolbar h2{font-size:21px;margin:0}.search{display:flex;max-width:330px;width:100%;height:42px;border:1px solid #ccd5da;background:white;border-radius:8px;overflow:hidden}.search input{flex:1;min-width:0;border:0;outline:0;padding:0 12px}.search button{border:0;background:#e9f5f1;color:var(--green);padding:0 14px;font-weight:700}
+    .products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.product{overflow:hidden;background:white;border:1px solid var(--line);border-radius:13px;transition:transform .18s,box-shadow .18s}.product:hover{transform:translateY(-3px);box-shadow:0 8px 22px #17212b12}.photo{height:205px;background:#f8f8f7;display:grid;place-items:center;padding:12px}.photo img{width:100%;height:100%;object-fit:contain}.product-info{padding:14px 15px 16px}.badge{display:inline-block;border-radius:100px;background:#e7f5ef;color:#27775f;font-size:10px;font-weight:800;letter-spacing:.5px;padding:5px 8px;margin-bottom:9px}.product h3{font-size:14px;line-height:1.4;margin:0;min-height:40px}.details{display:block;margin-top:13px;color:var(--green);font-size:12px;font-weight:700}.empty{display:none;background:white;padding:22px;border-radius:10px;color:var(--muted)}
+    .whatsapp{position:fixed;right:20px;bottom:20px;z-index:10;width:58px;height:58px;display:grid;place-items:center;border-radius:50%;background:#25d366;color:#fff;box-shadow:0 4px 14px #10252e45;transition:transform .18s,box-shadow .18s}.whatsapp:hover{transform:translateY(-3px);box-shadow:0 7px 18px #10252e55}.whatsapp svg{width:31px;height:31px}.whatsapp:focus-visible{outline:3px solid #132b3a;outline-offset:3px}
+    footer{background:var(--navy);color:#e4ebee;padding:22px;text-align:center;font-size:12px}footer b{font-size:16px;color:white}footer p{margin:7px 0 0}
+    @media(max-width:900px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{height:190px}}
+    @media(max-width:640px){.topbar{height:60px}.topnote{display:none}.brand{font-size:23px}.crumb{padding:14px 16px}main{padding:0 14px 30px}.hero{border-radius:16px}.toolbar{align-items:flex-start;flex-direction:column}.search{max-width:none}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:155px}.product-info{padding:11px}.product h3{font-size:13px}.details{margin-top:10px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <a class="brand" href="innovaxshop.html" aria-label="Innovax Shop home">innovax<span>.</span></a>
+      <div class="topnote">Thoughtful finds for everyday life</div>
+      <a class="back" href="innovaxshop.html">← Back to shop</a>
+    </div>
+  </header>
+  <div class="crumb"><a href="innovaxshop.html">Shop</a> &nbsp;›&nbsp; Home Essentials &nbsp;›&nbsp; <strong>Health Accessories</strong></div>
+  <main>
+    <section class="hero">
+      <span class="eyebrow">Home Essentials · Wellness</span>
+      <h1>Health Accessories</h1>
+      <p>Explore practical wellness and personal care accessories for your home and everyday routine.</p>
+    </section>
+    <section aria-labelledby="productsHeading">
+      <div class="toolbar">
+        <h2 id="productsHeading">Browse accessories</h2>
+        <form class="search" id="searchForm" role="search">
+          <input id="searchInput" type="search" placeholder="Search accessories" aria-label="Search health accessories">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      <div class="products" id="products">
+        <article class="product" data-search="skin tag remover patch personal care"><div class="photo"><img src="New folder/Buy Health Accessories Online — Best Prices – Markaz_files/1013-223-708539-product-1.webp" alt="Skin tag remover patches"></div><div class="product-info"><span class="badge">PERSONAL CARE</span><h3>Skin Tag Remover Patches</h3><a class="details" href="#productsHeading">View item&nbsp; →</a></div></article>
+        <article class="product" data-search="joint oil knee wellness"><div class="photo"><img src="New folder/Buy Health Accessories Online — Best Prices – Markaz_files/608-223-601054-product-1.jpeg" alt="Joint care oil"></div><div class="product-info"><span class="badge">WELLNESS</span><h3>Joint Care Oil</h3><a class="details" href="#productsHeading">View item&nbsp; →</a></div></article>
+        <article class="product" data-search="heating belt period comfort"><div class="photo"><img src="New folder/Buy Health Accessories Online — Best Prices – Markaz_files/2060-223-733673-product-1.webp" alt="Electric heating belt"></div><div class="product-info"><span class="badge">COMFORT</span><h3>Electric Heating Belt</h3><a class="details" href="#productsHeading">View item&nbsp; →</a></div></article>
+        <article class="product" data-search="posture corrector back support"><div class="photo"><img src="New folder/Buy Health Accessories Online — Best Prices – Markaz_files/2190-223-738386-product-1.webp" alt="Adjustable posture support belt"></div><div class="product-info"><span class="badge">SUPPORT</span><h3>Adjustable Posture Support Belt</h3><a class="details" href="#productsHeading">View item&nbsp; →</a></div></article>
+        <article class="product" data-search="nebulizer breathing respiratory"><div class="photo"><img src="New folder/Buy Health Accessories Online — Best Prices – Markaz_files/1787-223-668733-product-1.webp" alt="Portable nebulizer"></div><div class="product-info"><span class="badge">HOME CARE</span><h3>Portable USB Nebulizer</h3><a class="details" href="#productsHeading">View item&nbsp; →</a></div></article>
+        <article class="product" data-search="foot pads personal care"><div class="photo"><img src="New folder/Buy Health Accessories Online — Best Prices – Markaz_files/1347-223-706136-product-1.webp" alt="Foot care pads"></div><div class="product-info"><span class="badge">PERSONAL CARE</span><h3>Foot Care Pads</h3><a class="details" href="#productsHeading">View item&nbsp; →</a></div></article>
+        <article class="product" data-search="breathing exercise lung fitness"><div class="photo"><img src="New folder/Buy Health Accessories Online — Best Prices – Markaz_files/2361-223-MZ2361200264ADES-773964001-product-1.webp" alt="Breathing exercise device"></div><div class="product-info"><span class="badge">WELLNESS</span><h3>Breathing Exercise Device</h3><a class="details" href="#productsHeading">View item&nbsp; →</a></div></article>
+        <article class="product" data-search="knee joint pain relief patch"><div class="photo"><img src="New folder/Buy Health Accessories Online — Best Prices – Markaz_files/3102-223-MZ3102200095ROPK-772607001-product-1.webp" alt="Knee care patches"></div><div class="product-info"><span class="badge">SUPPORT</span><h3>Knee Care Patches</h3><a class="details" href="#productsHeading">View item&nbsp; →</a></div></article>
+      </div>
+      <p class="empty" id="emptyState" role="status">No matching accessories. Try another search.</p>
+    </section>
+  </main>
+  <footer><b>innovax<span style="color:#f6a623">.</span></b><p>Thoughtful finds for everyday life · Pakistan</p><p>© <span id="year"></span> Innovax</p></footer>
+  <a class="whatsapp" href="https://wa.me/923139849131" target="_blank" rel="noopener noreferrer" aria-label="Chat with Innovax on WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true" fill="currentColor"><path d="M16.04 3.2A12.7 12.7 0 0 0 5.1 22.35L3.3 28.9l6.7-1.76A12.72 12.72 0 1 0 16.04 3.2Zm0 23.1c-2 0-3.96-.54-5.67-1.57l-.4-.24-3.97 1.04 1.06-3.86-.26-.4a10.4 10.4 0 1 1 9.24 5.03Zm5.72-7.8c-.31-.16-1.86-.92-2.15-1.02-.29-.11-.5-.16-.7.16-.21.31-.81 1.01-.99 1.22-.18.2-.36.23-.67.08-.31-.16-1.3-.48-2.47-1.52-.91-.81-1.53-1.81-1.71-2.12-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.54.15-.18.2-.31.31-.52.1-.21.05-.39-.03-.54-.08-.16-.7-1.69-.96-2.31-.25-.6-.51-.51-.7-.52h-.6c-.2 0-.54.08-.83.39-.28.31-1.08 1.06-1.08 2.59s1.11 3 1.26 3.21c.16.2 2.19 3.34 5.3 4.68.74.32 1.32.51 1.77.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.5.26-.75.26-1.39.18-1.53-.08-.13-.29-.21-.6-.36Z"/></svg>
+  </a>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("searchForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const term = document.getElementById("searchInput").value.trim().toLowerCase();
+      let shown = 0;
+      document.querySelectorAll(".product").forEach(card => {
+        const match = !term || (card.dataset.search + " " + card.textContent).toLowerCase().includes(term);
+        card.hidden = !match;
+        if (match) shown++;
+      });
+      document.getElementById("emptyState").style.display = shown ? "none" : "block";
+    });
+  </script>
+</body>
+</html>

@@ -15,6 +15,7 @@
     .toplink{font-size:12px;line-height:1.15;white-space:nowrap}.toplink b{display:block;font-size:14px}.cart{border:1px solid #81909a;padding:8px 10px;border-radius:4px;font-weight:700;white-space:nowrap}
     .nav{min-height:42px;background:var(--navy2);color:#fff;display:flex;align-items:center;gap:28px;padding:0 clamp(14px,2vw,30px);font-size:13px;overflow-x:auto;white-space:nowrap}.nav a:hover{text-decoration:underline;color:#ffd38a}
     .intro{padding:22px clamp(14px,2vw,30px) 12px;display:flex;align-items:end;justify-content:space-between;gap:16px}.intro h1{font-size:23px;margin:0 0 5px;letter-spacing:-.4px}.intro p{margin:0;color:var(--muted);font-size:14px}.intro .tag{font-size:12px;color:#536571}
+    .category-shelf{margin:0 clamp(10px,1vw,16px) 16px;padding:15px;background:#fff;border:1px solid var(--line);border-radius:15px}.category-shelf h2{font-size:18px;margin:0 0 12px}.category-card{width:126px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:13px;font-weight:700}.category-card .category-image{width:116px;height:116px;border:1px solid #b8eadb;border-radius:50%;padding:8px;background:#f7fcfa;display:grid;place-items:center;overflow:hidden}.category-image img{width:100%;height:100%;object-fit:cover;border-radius:50%}.category-card:hover .category-image{border-color:#3aaf8c;box-shadow:0 3px 12px #278b6b24}.category-card:focus-visible{outline:3px solid #298b70;outline-offset:4px;border-radius:8px}
     .hero{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:10px;padding:4px clamp(10px,1vw,16px) 18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin}
     .feature{height:405px;position:relative;border-radius:17px;overflow:hidden;box-shadow:0 3px 8px #15253520;scroll-snap-align:start;background:#d9e4df;isolation:isolate;transition:transform .2s}.feature:hover{transform:translateY(-3px)}
     .feature img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:-2}.feature:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#fff9 0%,transparent 43%,#0002 100%)}
@@ -23,6 +24,7 @@
     .banner{margin:0 clamp(10px,1vw,16px) 20px;border-radius:14px;min-height:112px;padding:22px 28px;background:#f9dfaa;display:flex;align-items:center;justify-content:space-between;gap:20px}.banner h2{margin:0 0 5px;font-size:21px}.banner p{margin:0;color:#4e5660;font-size:14px}.banner a{background:var(--navy);color:white;border-radius:5px;padding:11px 16px;font-size:13px;font-weight:700;white-space:nowrap}
     footer{background:var(--navy);color:#e2e9ec;text-align:center;padding:26px 16px;font-size:12px}footer b{font-size:16px;color:white}footer p{margin:8px 0 0}
     .empty{display:none;margin:0 clamp(10px,1vw,16px) 20px;padding:24px;background:#fff;border-radius:12px;color:var(--muted)}
+    .whatsapp{position:fixed;right:20px;bottom:20px;z-index:10;width:58px;height:58px;display:grid;place-items:center;border-radius:50%;background:#25d366;color:#fff;box-shadow:0 4px 14px #10252e45;transition:transform .18s,box-shadow .18s}.whatsapp:hover{transform:translateY(-3px);box-shadow:0 7px 18px #10252e55}.whatsapp svg{width:31px;height:31px}.whatsapp:focus-visible{outline:3px solid #132b3a;outline-offset:3px}
     @media(max-width:900px){.topbar{gap:12px}.delivery,.toplink.account{display:none}.hero{grid-auto-columns:minmax(230px,31vw)}.feature{height:350px}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:560px){.topbar{height:58px;gap:10px}.brand{font-size:23px}.toplink.orders{display:none}.cart{padding:7px}.nav{gap:20px;min-height:40px}.intro{align-items:start;flex-direction:column;padding-top:17px}.hero{grid-auto-columns:78vw}.feature{height:360px}.feature h2{font-size:24px}.tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tile img{height:118px}.shelf{padding:13px 11px}.shelf h2{font-size:16px}.banner{align-items:flex-start;flex-direction:column;padding:20px}.banner a{white-space:normal}}
   </style>
@@ -59,6 +61,14 @@
       <article class="feature" style="background:#f2d6e8"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=85" alt="Laptop on a desk"><div class="feature-copy"><h2>Level up your workspace</h2><a href="#collections">Explore tech</a></div></article>
     </section>
 
+    <section class="category-shelf" aria-labelledby="categoryHeading">
+      <h2 id="categoryHeading">Shop by category</h2>
+      <a class="category-card" href="HealthAccessories.html" aria-label="Home Essentials: browse health accessories">
+        <span class="category-image"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=300&h=300&q=80" alt="Home decor and essentials"></span>
+        <span>Home Essentials</span>
+      </a>
+    </section>
+
     <section class="shelf" id="collections">
       <div class="shelf-head"><h2>Popular picks for your day</h2><a href="#deals">See all&nbsp; ›</a></div>
       <div class="tiles">
@@ -82,6 +92,9 @@
     <p class="empty" id="emptyState" role="status">No matching collections. Try another search.</p>
   </main>
   <footer id="about"><b>innovax<span style="color:#f6a623">.</span></b><p>Thoughtful finds for everyday life · Pakistan</p><p>© <span id="year"></span> Innovax</p></footer>
+  <a class="whatsapp" href="https://wa.me/923139849131" target="_blank" rel="noopener noreferrer" aria-label="Chat with Innovax on WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true" fill="currentColor"><path d="M16.04 3.2A12.7 12.7 0 0 0 5.1 22.35L3.3 28.9l6.7-1.76A12.72 12.72 0 1 0 16.04 3.2Zm0 23.1c-2 0-3.96-.54-5.67-1.57l-.4-.24-3.97 1.04 1.06-3.86-.26-.4a10.4 10.4 0 1 1 9.24 5.03Zm5.72-7.8c-.31-.16-1.86-.92-2.15-1.02-.29-.11-.5-.16-.7.16-.21.31-.81 1.01-.99 1.22-.18.2-.36.23-.67.08-.31-.16-1.3-.48-2.47-1.52-.91-.81-1.53-1.81-1.71-2.12-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.54.15-.18.2-.31.31-.52.1-.21.05-.39-.03-.54-.08-.16-.7-1.69-.96-2.31-.25-.6-.51-.51-.7-.52h-.6c-.2 0-.54.08-.83.39-.28.31-1.08 1.06-1.08 2.59s1.11 3 1.26 3.21c.16.2 2.19 3.34 5.3 4.68.74.32 1.32.51 1.77.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.5.26-.75.26-1.39.18-1.53-.08-.13-.29-.21-.6-.36Z"/></svg>
+  </a>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
     document.getElementById("searchForm").addEventListener("submit", event => {
