@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; }
+    body { margin: 0; padding: 2rem 1rem; background: #f4f7fb; color: #172033; }
+    main { max-width: 760px; margin: 0 auto; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 20px #17203312; }
+    h1 { margin-top: 0; }
+    #status { color: #526078; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { padding: .8rem 1rem; border-bottom: 1px solid #e5eaf1; }
+    th { background: #f7f9fc; }
+    tr:last-child td { border-bottom: 0; }
+    .error { color: #b42318 !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Products</h1>
+    <p id="status" role="status">Loading products…</p>
+    <div class="table-wrap">
+      <table aria-label="Products">
+        <thead><tr><th scope="col">ID</th><th scope="col">Product Name</th></tr></thead>
+        <tbody id="products"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabaseClient = supabase.createClient(
+      "https://rfjcgbehvyybthprbvqm.supabase.co",
+      "sb_publishable_E7O9tR2EkZP6-RQFrWUySA_m-V1RCnB"
+    );
+
+    async function loadProducts() {
+      const status = document.getElementById("status");
+      const tbody = document.getElementById("products");
+      const { data, error } = await supabaseClient
+        .from("Products")
+        .select("id, ProductName")
+        .order("id");
+
+      if (error) {
+        status.textContent = `Could not load products: ${error.message}`;
+        status.classList.add("error");
+        return;
+      }
+
+      if (!data.length) {
+        status.textContent = "No products found.";
+        return;
+      }
+
+      for (const product of data) {
+        const row = document.createElement("tr");
+        const idCell = document.createElement("td");
+        const nameCell = document.createElement("td");
+        idCell.textContent = product.id ?? "";
+        nameCell.textContent = product.ProductName ?? "";
+        row.append(idCell, nameCell);
+        tbody.appendChild(row);
+      }
+      status.textContent = `${data.length} product${data.length === 1 ? "" : "s"}`;
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>
