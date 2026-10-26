@@ -324,7 +324,7 @@ window.KITCHEN_PRODUCTS = [
     "id": "265507",
     "name": "Star Shaped Silicone Drain Strainer for Kitchen Sink",
     "price": "PKR 585",
-    "image": "https://static.markaz.app/pakistan/thumbnails/products/594-50-265507-product-4.jpg",
+    "image": "https://static.markaz.app/pakistan/products/594-50-265507-product-1.jpg",
     "markazUrl": "https://www.markaz.app/shop/product/star-shaped-silicone-drain-strainer-for-kitchen-sink/265507",
     "description": "Star Shaped Silicone Drain Strainer for Kitchen Sink. Contact Innovax to confirm current specifications, package contents, and availability."
   },
@@ -476,7 +476,7 @@ window.KITCHEN_PRODUCTS = [
     "id": "299387",
     "name": "Oil Spray Bottle 304 Stainless Steel Clear Glass",
     "price": "PKR 627",
-    "image": "https://static.markaz.app/pakistan/thumbnails/products/594-46-299387-product-1.jpg",
+    "image": "https://static.markaz.app/pakistan/products/594-46-299387-product-1.jpg",
     "markazUrl": "https://www.markaz.app/shop/product/oil-spray-bottle-304-stainless-steel-clear-glass/299387",
     "description": "Oil Spray Bottle 304 Stainless Steel Clear Glass. Contact Innovax to confirm current specifications, package contents, and availability."
   }
