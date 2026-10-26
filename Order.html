@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10104f">
+  <title>Complete your order | Innovax</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#11184a;background:#f7f5f1;font-synthesis:none}*{box-sizing:border-box}body{margin:0}.top{background:#10104f;color:#fff;padding:18px max(20px,calc((100% - 1180px)/2));display:flex;align-items:center;justify-content:space-between}.brand{font-size:25px;font-weight:800;color:white;text-decoration:none}.brand span{color:#f6a623}.top a:last-child{color:#fff;text-decoration:none}.layout{max-width:1180px;margin:28px auto;padding:0 18px 130px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.85fr);gap:26px}.panel{background:#fff;border:1px solid #e6e8ef;border-radius:24px;padding:25px;box-shadow:0 8px 28px #10104f0a}.steps{display:flex;gap:20px;border-bottom:1px solid #edf0f4;padding-bottom:17px;margin-bottom:22px;color:#6e7793;font-size:14px}.steps b{color:#11184a}.stepdot{display:inline-grid;place-items:center;width:23px;height:23px;border-radius:50%;background:#10104f;color:#fff;margin-right:7px}.heading{font-size:13px;letter-spacing:.05em;color:#008c75;font-weight:700;margin:4px 0 17px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:13px;font-weight:600;color:#333b59}input,textarea,select{font:inherit;border:1px solid #ccd3df;border-radius:13px;padding:13px 14px;outline:none;color:#11184a;background:#fff}input:focus,textarea:focus,select:focus{border-color:#00b88a;box-shadow:0 0 0 3px #00b88a20}textarea{resize:vertical;min-height:84px}.hint{font-size:12px;color:#77809b;line-height:1.5}.summary-top{display:flex;gap:14px;align-items:center}.summary-top img{width:82px;height:82px;object-fit:contain;background:#f7f8fa;border-radius:14px}.product-name{font-weight:700;line-height:1.35}.product-id{font-size:12px;color:#77809b;margin-top:4px}.product-price{font-weight:700;white-space:nowrap;margin-left:auto}.qtyrow,.totalrow{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:17px;border-top:1px solid #edf0f4}.qty{display:flex;align-items:center;border:1px solid #ccd3df;border-radius:25px;overflow:hidden}.qty button{border:0;background:white;color:#11184a;padding:9px 14px;font-size:18px;cursor:pointer}.qty input{width:42px;border:0;border-radius:0;padding:7px 0;text-align:center;box-shadow:none}.totalrow{font-weight:700;font-size:17px}.trust{color:#61708b;font-size:12px;line-height:1.8;margin-top:20px}.submit{display:block;width:100%;border:0;border-radius:28px;background:#00b88a;color:#062a3b;padding:15px 18px;font:700 16px system-ui;cursor:pointer;margin-top:24px}.submit:disabled{opacity:.6;cursor:wait}.status{min-height:22px;margin:13px 0 0;color:#526078;font-size:14px}.status.error{color:#b42318}.status.success{color:#07805f}.coupon{background:#f8fafc;border-radius:16px;padding:16px;margin:20px 0}.coupon strong{display:block;color:#008c75;font-size:13px;margin-bottom:5px}.bar{position:fixed;bottom:0;left:0;right:0;background:#fffefa;border-top:1px solid #ece9e3;padding:13px max(20px,calc((100% - 1180px)/2));display:flex;align-items:center;justify-content:space-between;box-shadow:0 -5px 20px #11184a0a}.bar small{color:#61708b}.bar b{font-size:21px;margin-left:8px}.bar button{background:#00b88a;border:0;border-radius:28px;padding:13px 20px;font-weight:700;color:#062a3b;cursor:pointer}.honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}@media(max-width:800px){.layout{grid-template-columns:1fr;margin-top:16px;gap:16px}.panel{padding:19px;border-radius:20px}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.top{padding:15px 18px}.bar{padding:12px 18px}.steps{gap:10px;font-size:12px}}
+  </style>
+</head>
+<body>
+  <header class="top"><a class="brand" href="shop.html">innovax<span>.</span></a><a href="shop.html">Continue shopping</a></header>
+  <main class="layout">
+    <section class="panel">
+      <div class="steps"><b><span class="stepdot">1</span>Address</b><span>—</span><span>2&nbsp; Payment</span><span>—</span><span>3&nbsp; Confirm</span></div>
+      <h1 class="heading">DELIVERY ADDRESS</h1>
+      <form id="orderForm">
+        <div class="fields">
+          <div class="field"><label for="customerName">Full name *</label><input id="customerName" name="customerName" autocomplete="name" maxlength="120" required></div>
+          <div class="field"><label for="phone">Mobile number *</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="03XX XXXXXXX" required></div>
+          <div class="field"><label for="email">Email (optional)</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254"></div>
+          <div class="field"><label for="city">City *</label><input id="city" name="city" autocomplete="address-level2" maxlength="100" required></div>
+          <div class="field full"><label for="address">Street address / house number *</label><textarea id="address" name="address" autocomplete="street-address" maxlength="500" required></textarea></div>
+          <div class="field"><label for="province">Province / region</label><input id="province" name="province" autocomplete="address-level1" maxlength="100"></div>
+          <div class="field"><label for="postalCode">Postal code</label><input id="postalCode" name="postalCode" autocomplete="postal-code" maxlength="20"></div>
+          <div class="field full"><label for="notes">Delivery instructions (optional)</label><textarea id="notes" name="notes" maxlength="500" placeholder="Landmark, preferred delivery time, etc."></textarea></div>
+          <div class="honeypot" aria-hidden="true"><label for="website">Leave blank</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+        </div>
+        <p class="hint">Cash on delivery details and any delivery charges will be confirmed by Innovax.</p>
+        <button class="submit" id="submitButton" type="submit">Place order request</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <aside class="panel">
+      <div class="coupon"><strong>ORDER INFORMATION</strong><span class="hint">Review your selected item and quantity before sending the request.</span></div>
+      <h2 class="heading">ORDER SUMMARY</h2>
+      <div class="summary-top"><img id="productImage" alt=""><div><div class="product-name" id="productName"></div><div class="product-id" id="productId"></div></div><div class="product-price" id="unitPrice"></div></div>
+      <div class="qtyrow"><span>Quantity</span><div class="qty"><button id="minus" type="button" aria-label="Decrease quantity">−</button><input id="quantity" type="number" value="1" min="1" max="100" aria-label="Quantity"><button id="plus" type="button" aria-label="Increase quantity">+</button></div></div>
+      <div class="totalrow"><span>Subtotal</span><span id="subtotal"></span></div>
+      <p class="trust">✓ Cash on delivery can be confirmed<br>✓ Innovax will contact you to confirm availability<br>✓ Delivery charge confirmed before dispatch</p>
+    </aside>
+  </main>
+  <div class="bar"><div><small>ORDER SUBTOTAL</small><b id="barTotal"></b></div><button type="button" id="barSubmit">Place order</button></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://rfjcgbehvyybthprbvqm.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_E7O9tR2EkZP6-RQFrWUySA_m-V1RCnB";
+    const db = supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+    const params = new URLSearchParams(location.search);
+    const rawPrice = params.get("price") || "";
+    const price = Number(rawPrice.replace(/[^0-9.]/g, ""));
+    const item = { id: (params.get("id") || "").slice(0, 40), name: (params.get("name") || "").slice(0, 250), image: (params.get("image") || "").slice(0, 1000), category: (params.get("category") || "").slice(0, 80), markazUrl: params.get("markazUrl") || "" };
+    const status = document.getElementById("status");
+    const qty = document.getElementById("quantity");
+    const money = amount => `PKR ${new Intl.NumberFormat("en-PK", { maximumFractionDigits: 0 }).format(amount)}`;
+    function updateTotal(){ const n=Math.max(1,Math.min(100,Number(qty.value)||1)); qty.value=n; const total=price*n; document.getElementById("subtotal").textContent=money(total); document.getElementById("barTotal").textContent=money(total); }
+    document.getElementById("productName").textContent = item.name || "Product details unavailable";
+    document.getElementById("productId").textContent = item.id ? `Product ID: ${item.id}` : "Product ID missing";
+    document.getElementById("unitPrice").textContent = Number.isFinite(price) && price > 0 ? money(price) : "Price on request";
+    const image = document.getElementById("productImage"); image.src = item.image; image.alt = item.name; image.onerror = () => { image.hidden = true; };
+    qty.addEventListener("input", updateTotal); document.getElementById("minus").addEventListener("click",()=>{qty.value=Math.max(1,(Number(qty.value)||1)-1);updateTotal();}); document.getElementById("plus").addEventListener("click",()=>{qty.value=Math.min(100,(Number(qty.value)||1)+1);updateTotal();}); updateTotal();
+    const form = document.getElementById("orderForm");
+    document.getElementById("barSubmit").addEventListener("click",()=>form.requestSubmit());
+    form.addEventListener("submit", async event => {
+      event.preventDefault(); status.className="status"; status.textContent="";
+      if (form.website.value) return;
+      if (!item.id || !item.name || !Number.isFinite(price) || price <= 0 || !/^https:\/\/www\.markaz\.app\/shop\/product\//.test(item.markazUrl)) { status.textContent="Product information is incomplete. Return to the product page and try again."; status.classList.add("error"); return; }
+      const submit = document.getElementById("submitButton"); submit.disabled=true; submit.textContent="Sending order…";
+      const values = new FormData(form);
+      const payload = { customer_name:String(values.get("customerName")).trim(), customer_phone:String(values.get("phone")).trim(), customer_email:String(values.get("email")).trim()||null, delivery_address:String(values.get("address")).trim(), city:String(values.get("city")).trim(), province:String(values.get("province")).trim()||null, postal_code:String(values.get("postalCode")).trim()||null, delivery_notes:String(values.get("notes")).trim()||null, product_id:item.id, product_name:item.name, product_image_url:item.image||null, product_price:price, quantity:Number(qty.value), category:item.category, markaz_product_url:item.markazUrl };
+      const { error } = await db.from("orders").insert(payload);
+      if (error) { status.textContent=`Could not submit the order: ${error.message}`; status.classList.add("error"); submit.disabled=false; submit.textContent="Place order request"; return; }
+      form.reset(); qty.value=1; updateTotal(); status.textContent="Your order request was received. Innovax will contact you to confirm it."; status.classList.add("success"); submit.textContent="Request received";
+    });
+  </script>
+</body>
+</html>
