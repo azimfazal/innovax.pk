@@ -113,16 +113,45 @@
   </a>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+    let activeProductSearch = "";
+    const productCards = [...document.querySelectorAll(".product")];
+    const productEmptyState = document.getElementById("emptyState");
+    function updateProductVisibility() {
+      let shown = 0;
+      for (const card of productCards) {
+        if (!card.isConnected) continue;
+        const matches = card.dataset.imageReady === "true" && (!activeProductSearch || (card.dataset.search + " " + card.textContent).toLowerCase().includes(activeProductSearch));
+        card.hidden = !matches;
+        if (matches) shown++;
+      }
+      productEmptyState.style.display = shown ? "none" : "block";
+      if (!shown && productCards.some(card => card.isConnected && card.dataset.imageReady === "pending")) productEmptyState.textContent = "Loading product images…";
+      else productEmptyState.textContent = activeProductSearch ? "No matching accessories. Try another search." : "No accessories with available images.";
+    }
+    for (const card of productCards) {
+      const image = card.querySelector("img");
+      card.hidden = true;
+      card.dataset.imageReady = "pending";
+      image.loading = "eager";
+      image.addEventListener("load", () => {
+        if (image.naturalWidth > 0) card.dataset.imageReady = "true";
+        else card.remove();
+        updateProductVisibility();
+      });
+      image.addEventListener("error", () => {
+        card.remove();
+        updateProductVisibility();
+      });
+      if (image.complete) {
+        if (image.naturalWidth > 0) card.dataset.imageReady = "true";
+        else card.remove();
+      }
+    }
+    updateProductVisibility();
     document.getElementById("searchForm").addEventListener("submit", event => {
       event.preventDefault();
-      const term = document.getElementById("searchInput").value.trim().toLowerCase();
-      let shown = 0;
-      document.querySelectorAll(".product").forEach(card => {
-        const match = !term || (card.dataset.search + " " + card.textContent).toLowerCase().includes(term);
-        card.hidden = !match;
-        if (match) shown++;
-      });
-      document.getElementById("emptyState").style.display = shown ? "none" : "block";
+      activeProductSearch = document.getElementById("searchInput").value.trim().toLowerCase();
+      updateProductVisibility();
     });
   </script>
 </body>

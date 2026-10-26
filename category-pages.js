@@ -59,9 +59,21 @@ const list=catalogs[page.dataset.category]||[];
 const grid=document.getElementById("products");
 const empty=document.getElementById("emptyState");
 const count=document.getElementById("resultCount");
+let activeTerm="";
+function refreshProducts(){
+  const cards=[...grid.querySelectorAll(".product")];
+  const visible=cards.filter(card=>card.dataset.imageReady==="true"&&(!activeTerm||card.dataset.search.includes(activeTerm)));
+  for(const card of cards) card.hidden=!visible.includes(card);
+  count.textContent=`${visible.length} item${visible.length===1?"":"s"}`;
+  empty.style.display=visible.length?"none":"block";
+  if(!visible.length&&cards.some(card=>card.dataset.imageReady==="pending")) empty.textContent="Loading product images…";
+  else empty.textContent=activeTerm?"No matching products. Try another search.":"No products with available images.";
+}
 for(const [id,name,price,image] of list){
   const card=document.createElement("article");
   card.className="product";
+  card.hidden=true;
+  card.dataset.imageReady="pending";
   card.dataset.search=name.toLowerCase();
   const detailsUrl=`ProductDetails.html?id=${encodeURIComponent(id)}&category=${encodeURIComponent(page.dataset.category)}`;
   card.tabIndex=0;
@@ -80,7 +92,9 @@ for(const [id,name,price,image] of list){
   const photo=document.createElement("div");
   photo.className="photo";
   const img=document.createElement("img");
-  img.src=image; img.alt=name; img.loading="lazy";
+  img.alt=name; img.loading="eager";
+  img.addEventListener("load",()=>{if(img.naturalWidth>0){card.dataset.imageReady="true";refreshProducts();}else{card.remove();refreshProducts();}});
+  img.addEventListener("error",()=>{card.remove();refreshProducts();});
   photo.appendChild(img);
   const info=document.createElement("div"); info.className="product-info";
   const badge=document.createElement("span"); badge.className="badge"; badge.textContent=page.dataset.badge;
@@ -90,13 +104,13 @@ for(const [id,name,price,image] of list){
   details.href=detailsUrl;
   const ask=document.createElement("a"); ask.className="ask"; ask.target="_blank"; ask.rel="noopener noreferrer"; ask.textContent="Ask on WhatsApp";
   ask.href="https://wa.me/923139849131?text="+encodeURIComponent(`Hi Innovax, I'm interested in ${name} (${price}).`);
-  info.append(badge,heading,priceEl,details,ask); card.append(photo,info); grid.appendChild(card);
+  info.append(badge,heading,priceEl,details,ask); card.append(photo,info); grid.appendChild(card); img.src=image;
+  if(img.complete){if(img.naturalWidth>0){card.dataset.imageReady="true";refreshProducts();}else{card.remove();refreshProducts();}}
 }
-count.textContent=`${list.length} items`;
+refreshProducts();
 document.getElementById("searchForm").addEventListener("submit",event=>{
   event.preventDefault();
-  const term=document.getElementById("searchInput").value.trim().toLowerCase(); let shown=0;
-  grid.querySelectorAll(".product").forEach(card=>{const match=!term||card.dataset.search.includes(term);card.hidden=!match;if(match)shown++;});
-  count.textContent=`${shown} item${shown===1?"":"s"}`; empty.style.display=shown?"none":"block";
+  activeTerm=document.getElementById("searchInput").value.trim().toLowerCase();
+  refreshProducts();
 });
 document.getElementById("year").textContent=new Date().getFullYear();
