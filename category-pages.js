@@ -51,7 +51,10 @@ const catalogs={
     ["702640","Black ABS Binoculars 12x7 for Outdoor Adventures","PKR 3,620","https://static.markaz.app/pakistan/thumbnails/products/854-212-702640-product-1.webp"],
     ["616910","Portable Rainbow Camera with Adjustable Stand Black ABS","PKR 1,719","https://static.markaz.app/pakistan/thumbnails/products/943-212-616910-product-1.webp"]
   ],
-  kitchen:(window.KITCHEN_PRODUCTS||[]).map(product=>[product.id,product.name,product.price,product.image])
+  kitchen:(window.KITCHEN_PRODUCTS||[]).map(product=>[product.id,product.name,product.price,product.image]),
+  cosmetics:(window.COSMETICS_PRODUCTS||[]).map(product=>[product.id,product.name,product.price,product.image]),
+  suits:(window.SUITS_PRODUCTS||[]).map(product=>[product.id,product.name,product.price,product.image]),
+  motherbaby:(window.MOTHER_BABY_PRODUCTS||[]).map(product=>[product.id,product.name,product.price,product.image])
 };
 
 const page=document.getElementById("categoryPage");
@@ -103,7 +106,7 @@ for(const [id,name,price,image] of list){
   const details=document.createElement("a"); details.className="details"; details.textContent="View product details →";
   details.href=detailsUrl;
   const ask=document.createElement("a"); ask.className="ask"; ask.target="_blank"; ask.rel="noopener noreferrer"; ask.textContent="Ask on WhatsApp";
-  ask.href="https://wa.me/923139849131?text="+encodeURIComponent(`Hi Innovax, I'm interested in ${name} (${price}).`);
+  ask.href="https://wa.me/923139849131?text="+encodeURIComponent(`Hi Innovax, I'm interested in ${name} (Product ID: ${id}, ${price}).`);
   info.append(badge,heading,priceEl,details,ask); card.append(photo,info); grid.appendChild(card); img.src=image;
   window.innovaxWatchMarkazImage?.(img);
 }
