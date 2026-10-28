@@ -94,7 +94,7 @@ for(const [id,name,price,image] of list){
   const img=document.createElement("img");
   img.alt=name; img.loading="eager";
   img.addEventListener("load",()=>{if(img.naturalWidth>0){card.dataset.imageReady="true";refreshProducts();}else{card.remove();refreshProducts();}});
-  img.addEventListener("error",()=>{card.remove();refreshProducts();});
+  img.addEventListener("innovax:image-failed",()=>{card.remove();refreshProducts();});
   photo.appendChild(img);
   const info=document.createElement("div"); info.className="product-info";
   const badge=document.createElement("span"); badge.className="badge"; badge.textContent=page.dataset.badge;
@@ -105,7 +105,7 @@ for(const [id,name,price,image] of list){
   const ask=document.createElement("a"); ask.className="ask"; ask.target="_blank"; ask.rel="noopener noreferrer"; ask.textContent="Ask on WhatsApp";
   ask.href="https://wa.me/923139849131?text="+encodeURIComponent(`Hi Innovax, I'm interested in ${name} (${price}).`);
   info.append(badge,heading,priceEl,details,ask); card.append(photo,info); grid.appendChild(card); img.src=image;
-  if(img.complete){if(img.naturalWidth>0){card.dataset.imageReady="true";refreshProducts();}else{card.remove();refreshProducts();}}
+  window.innovaxWatchMarkazImage?.(img);
 }
 refreshProducts();
 document.getElementById("searchForm").addEventListener("submit",event=>{

@@ -58,7 +58,9 @@
     document.getElementById("productName").textContent = item.name || "Product details unavailable";
     document.getElementById("productId").textContent = item.id ? `Product ID: ${item.id}` : "Product ID missing";
     document.getElementById("unitPrice").textContent = Number.isFinite(price) && price > 0 ? money(price) : "Price on request";
-    const image = document.getElementById("productImage"); image.src = item.image; image.alt = item.name; image.onerror = () => { image.hidden = true; };
+    const image = document.getElementById("productImage"); image.src = item.image; image.alt = item.name;
+    image.addEventListener("innovax:image-failed", () => { image.hidden = true; });
+    window.innovaxWatchMarkazImage?.(image);
     qty.addEventListener("input", updateTotal); document.getElementById("minus").addEventListener("click",()=>{qty.value=Math.max(1,(Number(qty.value)||1)-1);updateTotal();}); document.getElementById("plus").addEventListener("click",()=>{qty.value=Math.min(100,(Number(qty.value)||1)+1);updateTotal();}); updateTotal();
     const form = document.getElementById("orderForm");
     document.getElementById("barSubmit").addEventListener("click",()=>form.requestSubmit());
@@ -74,5 +76,6 @@
       form.reset(); qty.value=1; updateTotal(); status.textContent="Your order request was received. Innovax will contact you to confirm it."; status.classList.add("success"); submit.textContent="Request received";
     });
   </script>
+  <script src="markaz-image-fallback.js"></script>
 </body>
 </html>
