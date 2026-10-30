@@ -27,11 +27,12 @@
 
   function fail(image) {
     image.dispatchEvent(new CustomEvent("innovax:image-failed", { bubbles: true }));
-    image.closest(".product, .trend-card, .shop-card")?.remove();
+    image.closest(".product, .trend-card, .shop-card, .similar-card")?.remove();
   }
 
   window.innovaxWatchMarkazImage = function (image) {
     if (!(image instanceof HTMLImageElement)) return;
+    if (image.closest(".gallery")) return;
     const source = image.currentSrc || image.src;
     try { if (new URL(source, document.baseURI).hostname !== "static.markaz.app") return; }
     catch { return; }
