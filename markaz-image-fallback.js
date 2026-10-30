@@ -27,7 +27,7 @@
 
   function fail(image) {
     image.dispatchEvent(new CustomEvent("innovax:image-failed", { bubbles: true }));
-    image.closest(".product, .trend-card")?.remove();
+    image.closest(".product, .trend-card, .shop-card")?.remove();
   }
 
   window.innovaxWatchMarkazImage = function (image) {
