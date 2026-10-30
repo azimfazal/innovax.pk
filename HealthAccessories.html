@@ -8,7 +8,7 @@
   <style>
     :root{font-family:Arial,Helvetica,sans-serif;color:#18232c;background:#f4f6f7;font-synthesis:none;text-rendering:optimizeLegibility;--navy:#132b3a;--muted:#5b6872;--line:#dfe5e8;--green:#178367}
     *{box-sizing:border-box}body{margin:0}a{color:inherit;text-decoration:none}button,input{font:inherit}
-    header{background:var(--navy);color:white}.topbar{height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(16px,4vw,58px)}.brand{font-size:27px;font-weight:800;letter-spacing:-1.5px}.brand span{color:#f6a623}.topnote{font-size:13px;color:#d9e3e8}.back{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border-radius:6px;padding:10px 14px;font-size:13px;font-weight:700}.back:hover{background:#f2f4f5}
+    header{background:var(--navy);color:white}.topbar{height:66px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(14px,2vw,30px)}.brand{font-size:27px;font-weight:800;letter-spacing:-1.5px}.brand span{color:#f6a623}.topnote{font-size:13px;color:#d9e3e8}.back{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border-radius:6px;padding:10px 14px;font-size:13px;font-weight:700}.back:hover{background:#f2f4f5}
     .crumb{max-width:1180px;margin:auto;padding:17px 20px;color:#71808a;font-size:13px}.crumb a:hover{color:var(--green);text-decoration:underline}
     main{max-width:1180px;margin:0 auto;padding:0 20px 42px}.hero{position:relative;overflow:hidden;border-radius:22px;padding:clamp(24px,5vw,54px);background:linear-gradient(125deg,#fff0dc,#f7cfaa 58%,#efad7d);color:#35291f}.hero:after{content:"✚";position:absolute;right:6%;top:-38px;font-size:220px;color:#fff;opacity:.22;transform:rotate(14deg);pointer-events:none}.eyebrow{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;font-weight:800;color:#795c45}.hero h1{font-size:clamp(30px,5vw,48px);letter-spacing:-1.5px;line-height:1.05;margin:11px 0 12px;max-width:610px}.hero p{font-size:15px;line-height:1.6;color:#604c3e;max-width:560px;margin:0}
     .toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 16px}.toolbar h2{font-size:21px;margin:0}.search{display:flex;max-width:330px;width:100%;height:42px;border:1px solid #ccd5da;background:white;border-radius:8px;overflow:hidden}.search input{flex:1;min-width:0;border:0;outline:0;padding:0 12px}.search button{border:0;background:#e9f5f1;color:var(--green);padding:0 14px;font-weight:700}
@@ -18,6 +18,7 @@
     @media(max-width:900px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{height:190px}}
     @media(max-width:640px){.topbar{height:60px}.topnote{display:none}.brand{font-size:23px}.crumb{padding:14px 16px}main{padding:0 14px 30px}.hero{border-radius:16px}.toolbar{align-items:flex-start;flex-direction:column}.search{max-width:none}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:155px}.product-info{padding:11px}.product h3{font-size:13px}.details{margin-top:10px}}
   </style>
+  <link rel="stylesheet" href="shop-menu.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZMGBTTY4ZB"></script>
   <script>
@@ -29,6 +30,14 @@
 </head>
 <body>
   <header>
+    <div class="network-bar">
+      <nav aria-label="Innovax network">
+        <a href="index.html">Innovax HMIS</a>
+        <a href="shop.html" aria-current="page">Innovax Shop</a>
+        <a href="jobs.html">Innovax Jobs</a>
+        <a href="classified.html">Innovax Classified</a>
+      </nav>
+    </div>
     <div class="topbar">
       <a class="brand" href="shop.html" aria-label="Innovax Shop home">innovax<span>.</span></a>
       <div class="topnote">Thoughtful finds for everyday life</div>

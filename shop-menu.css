@@ -1,0 +1,13 @@
+/* Shared Innovax network bar used above the header on every shop page. */
+.network-bar{background:#fff;border-bottom:1px solid #e2e8eb;position:relative;z-index:6}
+.network-bar nav{display:flex;align-items:center;gap:18px;min-height:36px;padding:0 clamp(14px,2vw,30px);overflow-x:auto;scrollbar-width:none;white-space:nowrap;font-size:12px;line-height:1}
+.network-bar nav::-webkit-scrollbar{display:none}
+.network-bar a{font-weight:700;color:#5b6872;text-decoration:none;padding:2px 0}
+.network-bar a:hover{color:#132b3a;text-decoration:underline}
+.network-bar a:focus-visible{outline:2px solid #178367;outline-offset:3px;border-radius:3px}
+.network-bar a[aria-current="page"]{color:#178367}
+.network-bar a + a{border-left:1px solid #dfe5e8;padding-left:18px}
+@media(max-width:420px){
+  .network-bar nav{gap:12px;font-size:11px}
+  .network-bar a + a{padding-left:12px}
+}
