@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Order admin | Innovax</title>
+  <link rel="canonical" href="https://www.innovax.pk/OrderAdmin.html">
+  <meta name="robots" content="noindex, follow">
+  <link rel="stylesheet" href="shop-menu.css">
+  <style>.network-bar{margin:-28px -16px 24px}</style>
   <style>
     :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#172033;background:#f4f7fb}*{box-sizing:border-box}body{margin:0;padding:28px 16px}main{max-width:1200px;margin:auto;background:white;padding:24px;border-radius:16px;box-shadow:0 4px 24px #17203312}h1{margin-top:0}.login{max-width:420px}.fields{display:grid;gap:12px}input{font:inherit;padding:12px;border:1px solid #ccd3df;border-radius:10px}.button{background:#10104f;color:#fff;border:0;border-radius:10px;padding:12px 18px;font:inherit;cursor:pointer}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:18px 0}.status{color:#526078;min-height:22px}.error{color:#b42318}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:1140px}th,td{padding:11px 10px;border-bottom:1px solid #e5eaf1;text-align:left;vertical-align:top}th{background:#f7f9fc;position:sticky;top:0}a{color:#10104f}small{color:#667085}.customer{min-width:170px}.product{min-width:220px}.address{min-width:230px}.delete-button{background:#fff;color:#b42318;border:1px solid #f0b7b2;border-radius:8px;padding:8px 11px;font:inherit;cursor:pointer}.delete-button:hover{background:#fff4f2}.delete-button:disabled{opacity:.55;cursor:wait}.hidden{display:none!important}
   </style>
@@ -14,7 +18,16 @@
     gtag('config', 'G-ZMGBTTY4ZB');
   </script>
 </head>
-<body><main>
+<body>
+  <div class="network-bar">
+    <nav aria-label="Innovax network">
+      <a href="index.html">Innovax HMIS</a>
+      <a href="shop.html" aria-current="page">Innovax Shop</a>
+      <a href="jobs.html">Innovax Jobs</a>
+      <a href="classified.html">Innovax Classified</a>
+    </nav>
+  </div>
+  <main>
   <section id="loginPanel" class="login"><h1>Innovax order admin</h1><p>Sign in with an administrator account to view customer orders.</p><form id="loginForm" class="fields"><input type="email" id="email" autocomplete="username" placeholder="Admin email" required><input type="password" id="password" autocomplete="current-password" placeholder="Password" required><button class="button" type="submit">Sign in</button></form></section>
   <section id="ordersPanel" class="hidden"><div class="toolbar"><div><h1>Customer orders</h1><div id="count" class="status"></div></div><div><button class="button" id="refresh">Refresh orders</button> <button class="button" id="signOut">Sign out</button></div></div><p id="status" class="status" role="status" aria-live="polite"></p><div class="table-wrap"><table><thead><tr><th>Order / date</th><th>Customer</th><th>Delivery address</th><th>Product</th><th>Qty</th><th>Subtotal</th><th>Status</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></section>
 </main>

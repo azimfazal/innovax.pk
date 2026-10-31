@@ -9,4 +9,11 @@
   <url><loc>https://www.innovax.pk/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://www.innovax.pk/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://www.innovax.pk/shop.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.innovax.pk/HealthAccessories.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.innovax.pk/lights.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.innovax.pk/CamerasAccessories.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.innovax.pk/KitchenAccessories.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.innovax.pk/Cosmetics.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.innovax.pk/ThreePieceSuits.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.innovax.pk/MotherBaby.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>

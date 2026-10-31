@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#132b3a">
   <title>Product | Innovax Shop</title>
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.innovax.pk/ProductDetails.html">
   <style>
     :root{font-family:Arial,Helvetica,sans-serif;color:#18232c;background:#f4f6f7;--navy:#132b3a;--muted:#5b6872;--line:#dfe5e8;--green:#178367}
     *{box-sizing:border-box}body{margin:0}a{color:inherit;text-decoration:none}header{background:var(--navy);color:#fff}.topbar{height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(14px,2vw,30px)}.brand{font-size:27px;font-weight:800;letter-spacing:-1.5px}.brand span{color:#f6a623}.back{background:white;color:var(--navy);padding:10px 14px;border-radius:6px;font-size:13px;font-weight:700}.back:hover{background:#f2f4f5}
@@ -371,6 +373,8 @@
 
     if (product) {
       document.title = `${product.name} | Innovax Shop`;
+      const canonicalParams = new URLSearchParams({ id: product.id, category });
+      document.querySelector('link[rel="canonical"]').href = `https://www.innovax.pk/ProductDetails.html?${canonicalParams.toString()}`;
       document.getElementById("productView").hidden = false;
       document.getElementById("crumbName").textContent = product.name;
       document.getElementById("productName").textContent = product.name;
@@ -393,6 +397,7 @@
       renderSimilar();
     } else {
       document.getElementById("notFound").style.display = "block";
+      document.querySelector('meta[name="robots"]').content = "noindex, follow";
     }
   </script>
 </body>
