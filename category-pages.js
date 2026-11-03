@@ -51,6 +51,7 @@ const catalogs={
     ["702640","Black ABS Binoculars 12x7 for Outdoor Adventures","PKR 3,620","https://static.markaz.app/pakistan/thumbnails/products/854-212-702640-product-1.webp"],
     ["616910","Portable Rainbow Camera with Adjustable Stand Black ABS","PKR 1,719","https://static.markaz.app/pakistan/thumbnails/products/943-212-616910-product-1.webp"]
   ],
+  computer:(window.COMPUTER_PRODUCTS||[]).map(product=>[product.id,product.name,product.price,product.image]),
   kitchen:(window.KITCHEN_PRODUCTS||[]).map(product=>[product.id,product.name,product.price,product.image]),
   cosmetics:(window.COSMETICS_PRODUCTS||[]).map(product=>[product.id,product.name,product.price,product.image]),
   suits:(window.SUITS_PRODUCTS||[]).map(product=>[product.id,product.name,product.price,product.image]),

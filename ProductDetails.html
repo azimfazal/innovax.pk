@@ -90,6 +90,7 @@
   <script src="cosmetics-products.js"></script>
   <script src="suits-products.js"></script>
   <script src="motherbaby-products.js"></script>
+  <script src="computer-products.js"></script>
   <script src="product-insights.js"></script>
   <script src="shop-catalog.js"></script>
   <script src="markaz-image-fallback.js"></script>
@@ -119,14 +120,15 @@
     PRODUCTS.push(...(window.COSMETICS_PRODUCTS || []));
     PRODUCTS.push(...(window.SUITS_PRODUCTS || []));
     PRODUCTS.push(...(window.MOTHER_BABY_PRODUCTS || []));
+    PRODUCTS.push(...(window.COMPUTER_PRODUCTS || []));
     const params = new URLSearchParams(location.search);
     const catalog = window.INNOVAX_SHOP_CATALOG || [];
     const product = PRODUCTS.find(item => item.id === params.get("id"));
     const catalogItem = catalog.find(item => item.id === params.get("id"));
     const category = params.get("category") || (catalogItem && catalogItem.category) || "health";
     const insight = product ? (window.INNOVAX_PRODUCT_INSIGHTS || {})[product.id] || null : null;
-    const categoryPage = category === "lights" ? "lights.html" : category === "cameras" ? "CamerasAccessories.html" : category === "kitchen" ? "KitchenAccessories.html" : category === "cosmetics" ? "Cosmetics.html" : category === "suits" ? "ThreePieceSuits.html" : category === "motherbaby" ? "MotherBaby.html" : category === "trends" ? "shop.html#top-trends" : "HealthAccessories.html";
-    const categoryLabel = category === "lights" ? "Lights" : category === "cameras" ? "Cameras & Accessories" : category === "kitchen" ? "Kitchen Accessories" : category === "cosmetics" ? "Cosmetics" : category === "suits" ? "3 Piece Suits" : category === "motherbaby" ? "Mother & Baby" : category === "trends" ? "Top Trends" : "Health Accessories";
+    const categoryPage = category === "lights" ? "lights.html" : category === "cameras" ? "CamerasAccessories.html" : category === "computer" ? "ComputerAccessories.html" : category === "kitchen" ? "KitchenAccessories.html" : category === "cosmetics" ? "Cosmetics.html" : category === "suits" ? "ThreePieceSuits.html" : category === "motherbaby" ? "MotherBaby.html" : category === "trends" ? "shop.html#top-trends" : "HealthAccessories.html";
+    const categoryLabel = category === "lights" ? "Lights" : category === "cameras" ? "Cameras & Accessories" : category === "computer" ? "Computer Accessories" : category === "kitchen" ? "Kitchen Accessories" : category === "cosmetics" ? "Cosmetics" : category === "suits" ? "3 Piece Suits" : category === "motherbaby" ? "Mother & Baby" : category === "trends" ? "Top Trends" : "Health Accessories";
     document.getElementById("categoryBack").href = categoryPage;
     document.getElementById("categoryBack").textContent = `← ${categoryLabel}`;
     document.getElementById("categoryCrumb").href = categoryPage;
