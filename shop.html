@@ -446,7 +446,7 @@
       var state = {
         filter:"all",
         query:"",
-        shown:24
+        shown:48
       };
 
       var staticVisible = 0;
@@ -579,7 +579,7 @@
 
       function applyQuery(term){
         state.query = (term || "").trim().toLowerCase();
-        state.shown = state.query ? 48 : 24;
+        state.shown = state.query ? catalog.length : 48;
         staticVisible = 0;
 
         document.querySelectorAll(".tile, .shelf:not(#more-products) .trend-card")
@@ -599,7 +599,7 @@
       chips.forEach(function(chip){
         chip.addEventListener("click", function(){
           state.filter = chip.dataset.filter;
-          state.shown = 24;
+          state.shown = 48;
 
           chips.forEach(function(other){
             other.setAttribute("aria-pressed", String(other === chip));
@@ -611,7 +611,7 @@
       });
 
       moreBtn.addEventListener("click", function(){
-        state.shown += 24;
+        state.shown += 48;
         render();
       });
 
