@@ -17,6 +17,21 @@
     if (text !== undefined) node.textContent = text;
     return node;
   }
+
+  // Layout rules live here so the blog looks right even if blog.html is cached or out of date:
+  // one post per row, and the picture always first inside each post.
+  function injectBlogStyles() {
+    if (document.getElementById("blogLayoutStyles")) return;
+    var style = document.createElement("style");
+    style.id = "blogLayoutStyles";
+    style.textContent =
+      "#blogPosts.blog-list{display:grid!important;grid-template-columns:1fr!important;gap:24px;max-width:860px;margin-inline:auto}" +
+      "#blogPosts .post-card{display:flex;flex-direction:column;padding:24px;border:1px solid var(--line,#e3e9f0);border-radius:var(--radius,12px);background:#fff;box-shadow:var(--shadow-sm,0 1px 3px rgba(11,31,51,.08))}" +
+      "#blogPosts .post-card>.post-cover{order:-1;display:block;width:100%;height:auto;max-height:420px;object-fit:cover;border-radius:10px;margin:0 0 18px}" +
+      "#blogPosts .read-post{align-self:flex-start}";
+    document.head.appendChild(style);
+  }
+
   function appendArticleContent(container, content) {
     var imagePattern = /!\[([^\]]*)\]\((https?:\/\/[^)\s]+)\)/g;
     var last = 0;
@@ -43,9 +58,11 @@
 
   async function loadPublicPosts() {
     if (!client || !list) return;
+    injectBlogStyles();
     var result = await client.from("blog_posts").select("id,title,excerpt,body,cover_image,created_at").eq("published", true).order("created_at", { ascending: false });
     list.replaceChildren();
     if (result.error) {
+      console.error("Blog load error:", result.error);
       list.appendChild(el("p", "blog-status", "Articles are temporarily unavailable."));
       return;
     }
@@ -55,20 +72,34 @@
     }
     result.data.forEach(function (post) {
       var card = el("article", "post-card");
+
+      // Picture first: use the cover picture; if there is none, use the first picture inside the article.
+      var coverUrl = post.cover_image;
+      var coverAlt = "Cover image for " + post.title;
+      var bodyText = post.body || "";
+      if (!coverUrl) {
+        var firstImage = /!\[([^\]]*)\]\((https?:\/\/[^)\s]+)\)/.exec(bodyText);
+        if (firstImage) {
+          coverUrl = firstImage[2];
+          coverAlt = firstImage[1] || coverAlt;
+          bodyText = bodyText.replace(firstImage[0], "");
+        }
+      }
+      if (coverUrl) {
+        var cover = el("img", "post-cover");
+        cover.src = coverUrl;
+        cover.alt = coverAlt;
+        cover.loading = "lazy";
+        card.appendChild(cover);
+      }
+
       var date = el("time", "", formatDate(post.created_at));
       date.dateTime = post.created_at;
       card.appendChild(date);
-      if (post.cover_image) {
-        var cover = el("img", "post-cover");
-        cover.src = post.cover_image;
-        cover.alt = "Cover image for " + post.title;
-        cover.loading = "lazy";
-        card.insertBefore(cover, date);
-      }
       card.appendChild(el("h2", "", post.title));
       if (post.excerpt) card.appendChild(el("p", "", post.excerpt));
       var body = el("div", "post-body");
-      appendArticleContent(body, post.body);
+      appendArticleContent(body, bodyText);
       body.hidden = true;
       var button = el("button", "read-post", "Read article →");
       button.type = "button";
