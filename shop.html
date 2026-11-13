@@ -12,6 +12,7 @@
 
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.innovax.pk/shop.html">
+  <meta name="format-detection" content="telephone=no">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Innovax Shop | Online Shopping in Pakistan">
@@ -139,16 +140,16 @@
       </div>
 
       <a class="toplink account" href="#featured">Welcome to<b>Innovax Shop</b></a>
-      <a class="toplink orders" href="#collections">Explore<b>Collections</b></a>
-      <a class="cart" href="#collections" aria-label="Shopping basket">🛒 <span id="cartCount">0</span></a>
+      <a class="toplink orders" href="#more-products">Explore<b>Products</b></a>
+      <a class="cart" href="#more-products" aria-label="Browse products">🛒 Browse</a>
     </div>
 
     <nav class="nav" aria-label="Main navigation">
       <a href="#home">☰ &nbsp;All</a>
-      <a href="#collections">Electronics</a>
-      <a href="#collections">Home & Living</a>
+      <a href="ComputerAccessories.html">Electronics</a>
+      <a href="KitchenAccessories.html">Home &amp; Living</a>
       <a href="#featured">New Arrivals</a>
-      <a href="#deals">Special Offers</a>
+      <a href="#more-products">Shop Products</a>
       <a href="#about">About Innovax</a>
       <a href="blog.html">Blog</a>
     </nav>
@@ -298,6 +299,7 @@
       var suggestEl = document.getElementById("searchSuggest");
       var searchWrap = document.querySelector(".search-wrap");
       var searchInput = document.getElementById("searchInput");
+      var pageParams = new URLSearchParams(window.location.search);
 
       var labels = {
         trends:"Popular",
@@ -317,6 +319,14 @@
       };
 
       var staticVisible = 0;
+
+      function syncUrl(){
+        var next = new URLSearchParams(window.location.search);
+        if (state.filter === "all") next.delete("category"); else next.set("category", state.filter);
+        if (state.query) next.set("q", state.query); else next.delete("q");
+        var query = next.toString();
+        history.replaceState(null, "", window.location.pathname + (query ? "?" + query : "") + window.location.hash);
+      }
 
       function matchesQuery(p){
         if (!state.query) return true;
@@ -347,10 +357,13 @@
       }
 
       function card(p){
-        return '<a class="shop-card" href="ProductDetails.html?id=' +
-          encodeURIComponent(p.id) +
-          '&amp;category=' +
-          encodeURIComponent(p.category) +
+        var params = new URLSearchParams({id:p.id, category:p.category});
+        ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function(key){
+          var value = pageParams.get(key);
+          if (value) params.set(key, value.slice(0, 200));
+        });
+        return '<a class="shop-card" href="ProductDetails.html?' +
+          esc(params.toString()) +
           '" data-search="' +
           esc(p.name + " " + p.category + " " + (labels[p.category] || "")) +
           '">' +
@@ -369,11 +382,12 @@
       }
 
       function suggestion(p){
-        return '<a href="ProductDetails.html?id=' +
-          encodeURIComponent(p.id) +
-          '&amp;category=' +
-          encodeURIComponent(p.category) +
-          '">' +
+        var params = new URLSearchParams({id:p.id, category:p.category});
+        ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function(key){
+          var value = pageParams.get(key);
+          if (value) params.set(key, value.slice(0, 200));
+        });
+        return '<a href="ProductDetails.html?' + esc(params.toString()) + '">' +
           '<img src="' +
           esc(p.image) +
           '" alt="" loading="lazy" decoding="async">' +
@@ -474,6 +488,7 @@
 
           hideSuggestions();
           render();
+          syncUrl();
         });
       });
 
@@ -519,11 +534,20 @@
 
       var searchForm = document.getElementById("searchForm");
 
+      var initialFilter = pageParams.get("category");
+      if (initialFilter && Array.from(chips).some(function(chip){return chip.dataset.filter === initialFilter;})) {
+        state.filter = initialFilter;
+        chips.forEach(function(chip){chip.setAttribute("aria-pressed", String(chip.dataset.filter === initialFilter));});
+      }
+      var initialQuery = pageParams.get("q") || "";
+      if (searchInput) searchInput.value = initialQuery;
+
       if (searchForm) {
         searchForm.addEventListener("submit", function(event){
           event.preventDefault();
 
           applyQuery(searchInput ? searchInput.value : "");
+          syncUrl();
           hideSuggestions();
 
           var target = document.getElementById("more-products");
@@ -534,7 +558,7 @@
         });
       }
 
-      applyQuery("");
+      applyQuery(initialQuery);
     })();
     </script>
 

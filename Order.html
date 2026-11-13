@@ -73,6 +73,13 @@
     const price = Number(rawPrice.replace(/[^0-9.]/g, ""));
     const item = { id: (params.get("id") || "").slice(0, 40), name: (params.get("name") || "").slice(0, 250), image: (params.get("image") || "").slice(0, 1000), category: (params.get("category") || "").slice(0, 80), markazUrl: params.get("markazUrl") || "" };
     const status = document.getElementById("status");
+    const attribution = {};
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(key => {
+      const value = params.get(key);
+      if (value) attribution[key] = value.slice(0, 200);
+    });
+    const checkoutCampaign = params.get("utm_campaign");
+    if (checkoutCampaign) gtag("event", "begin_checkout", {campaign_id:checkoutCampaign, currency:"PKR", value:price});
     const qty = document.getElementById("quantity");
     const money = amount => `PKR ${new Intl.NumberFormat("en-PK", { maximumFractionDigits: 0 }).format(amount)}`;
     function updateTotal(){ const n=Math.max(1,Math.min(100,Number(qty.value)||1)); qty.value=n; const subtotal=price*n; const shipping=150; const cashHandling=99; const total=subtotal+shipping+cashHandling; document.getElementById("subtotal").textContent=money(subtotal); document.getElementById("shipping").textContent=money(shipping); document.getElementById("cashHandling").textContent=money(cashHandling); document.getElementById("grandTotal").textContent=money(total); document.getElementById("barTotal").textContent=money(total); }
@@ -96,6 +103,7 @@
       const payload = { customer_name:String(values.get("customerName")).trim(), customer_phone:String(values.get("phone")).trim(), customer_email:String(values.get("email")).trim()||null, delivery_address:deliveryAddress, city:String(values.get("city")).trim(), province:String(values.get("province")).trim()||null, delivery_notes:String(values.get("notes")).trim()||null, product_id:item.id, product_name:item.name, product_image_url:item.image||null, product_price:price, quantity:Number(qty.value), category:item.category, markaz_product_url:item.markazUrl };
       const { error } = await db.from("orders").insert(payload);
       if (error) { status.textContent=`Could not submit the order: ${error.message}`; status.classList.add("error"); submit.disabled=false; submit.textContent="Place order request"; return; }
+      if (checkoutCampaign) gtag("event", "purchase", {campaign_id:checkoutCampaign, currency:"PKR", value:(price*Number(qty.value))+249, items:[{item_id:item.id, item_name:item.name, price:price, quantity:Number(qty.value)}]});
       form.reset(); qty.value=1; updateTotal(); status.textContent="Your order request was received. Innovax will contact you to confirm it."; status.classList.add("success"); submit.textContent="Request received"; window.alert("Your order request was received. Innovax will contact you to confirm it.");
     });
   </script>

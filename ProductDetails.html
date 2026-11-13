@@ -390,6 +390,10 @@
       document.getElementById("productId").textContent = `Product code: ${product.id}`;
       const markazUrl = product.markazUrl || `https://www.markaz.app/shop/product/${product.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}/${encodeURIComponent(product.id)}`;
       const orderParams = new URLSearchParams({ id: product.id, name: product.name, price: product.price, image: product.image, category: category || "health", markazUrl });
+      ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(key => {
+        const value = params.get(key);
+        if (value) orderParams.set(key, value.slice(0, 200));
+      });
       document.getElementById("buyNowButton").href = `Order.html?${orderParams.toString()}`;
       const message = `Hi Innovax, I am interested in ${product.name} (Product ID: ${product.id}, ${product.price}).`;
       document.getElementById("orderButton").href = `https://wa.me/923139849131?text=${encodeURIComponent(message)}`;
