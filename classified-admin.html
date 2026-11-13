@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#132b3a">
+  <title>Post an Ad | Innovax Classified</title><meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="shop-menu.css"><link rel="stylesheet" href="portal-pages.css">
+  <style>
+    main{max-width:820px}.form-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:clamp(20px,4vw,36px);box-shadow:0 4px 18px #1525350b}.form-card h1{margin:8px 0}.form-card>p{color:var(--muted);line-height:1.6}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-weight:700;font-size:13px}.field input,.field select,.field textarea{width:100%;border:1px solid #cbd5da;border-radius:8px;padding:12px;font:inherit;background:#fff}.field textarea{min-height:110px;resize:vertical}.field small{font-size:11px;color:var(--muted)}.form-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}.form-actions button{border:0;cursor:pointer}.form-actions button:disabled{opacity:.55;cursor:wait}.notice{padding:12px;border-radius:8px;background:#f0f4f5;color:#3c4b54;font-size:13px;line-height:1.5}.notice.success{background:#eaf8f1;color:#126143}.notice.error{background:#fff0ef;color:#a3352b}.preview-grid{display:flex;gap:8px;flex-wrap:wrap}.preview-grid img{width:88px;height:88px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}.consent{display:flex;align-items:flex-start;gap:8px;font-size:12px!important;color:var(--muted)}.consent input{margin-top:2px}@media(max-width:560px){.fields{grid-template-columns:1fr}.field.full{grid-column:auto}}
+  </style>
+</head>
+<body>
+  <header><div class="network-bar"><nav aria-label="Innovax network"><a href="index.html">Innovax HMIS</a><a href="shop.html">Innovax Shop</a><a href="jobs.html">Innovax Jobs</a><a href="classified.html">Innovax Classified</a></nav></div><div class="topbar"><a class="brand" href="classified.html">innovax<span>.</span></a><a class="back" href="classified.html">← Browse ads</a></div></header>
+  <main><section class="form-card"><span class="eyebrow">INNOVAX CLASSIFIED</span><h1>Post your ad</h1><p>Add clear details and photos so local buyers can find your listing. Your phone number will be visible to people browsing the ad.</p>
+    <form id="listingForm"><div class="fields">
+      <div class="field full"><label for="title">Ad title *</label><input id="title" name="title" maxlength="100" required placeholder="Example: Toyota Corolla 2018, clean condition"></div>
+      <div class="field"><label for="category">Category *</label><select id="category" name="category" required><option value="">Choose a category</option><option value="product">Product</option><option value="car">Car</option><option value="land">Land &amp; property</option><option value="other">Other</option></select></div>
+      <div class="field"><label for="price">Price (PKR) *</label><input id="price" name="price" type="number" min="1" max="999999999" step="1" required placeholder="Enter asking price"></div>
+      <div class="field"><label for="city">City *</label><input id="city" name="city" maxlength="80" required placeholder="e.g. Lahore"></div>
+      <div class="field"><label for="phone">WhatsApp / phone *</label><input id="phone" name="phone" type="tel" maxlength="30" required placeholder="03XX XXXXXXX"><small>Buyers use this number to contact you.</small></div>
+      <div class="field full"><label for="description">Short description *</label><textarea id="description" name="description" maxlength="700" required placeholder="Describe the item, condition, location or key features."></textarea></div>
+      <div class="field full"><label for="images">Photos (up to 5) *</label><input id="images" name="images" type="file" accept="image/jpeg,image/png,image/webp" multiple required><small>Use clear JPG, PNG or WebP photos, up to 5 MB each.</small><div id="imagePreview" class="preview-grid"></div></div>
+      <div class="field full"><label class="consent"><input id="consent" type="checkbox" required><span>I confirm this ad is accurate, I have permission to share these photos, and I agree my contact number will be public with the listing.</span></label></div>
+      <div class="field full"><label for="website" style="position:absolute;left:-10000px">Leave blank</label><input id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px"></div>
+    </div><div class="form-actions"><button id="submitButton" class="button primary" type="submit">Publish ad</button><a class="button secondary" href="classified.html">Cancel</a></div><p id="formStatus" class="notice" role="status" aria-live="polite">Listings appear publicly after you submit.</p></form>
+  </section></main>
+  <footer><b>innovax<span style="color:#f6a623">.</span></b><p>Thoughtful finds for everyday life · Pakistan</p><p>© <span id="year"></span> Innovax</p></footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="classified-admin.js"></script>
+</body>
+</html>
